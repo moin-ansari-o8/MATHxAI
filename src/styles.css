@@ -119,3 +119,14 @@ h3,
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(23, 25, 31, 0.3);
 }
+
+@keyframes pin-wiggle {
+  0%, 100% { transform: rotate(12deg) scale(1.1); }
+  25% { transform: rotate(-5deg) scale(1.2); }
+  50% { transform: rotate(20deg) scale(1.2); }
+  75% { transform: rotate(-5deg) scale(1.2); }
+}
+
+.animate-pin-wiggle {
+  animation: pin-wiggle 0.4s ease-in-out;
+}

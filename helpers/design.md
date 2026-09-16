@@ -632,6 +632,37 @@ Do not:
 - Let decorations overlap text/buttons
 - Let the desktop layout require unnecessary scrolling
 
+## Curriculum Pages (Journey & Math Library)
+
+The interior learning pages follow the same neo-brutalist, paper-themed visual language as the landing page but are structured for content consumption.
+
+### Layout
+- **Sidebar**: A floating, scrollable container on the left for the table of contents. Uses thick borders and chunky shadows.
+- **Content Area**: A larger floating container on the right for the active lesson content, featuring a subtle paper texture background.
+
+### Sidebar Interactions
+- **Progress Fill**: Chapter titles in the sidebar dynamically fill with a purple gradient (`#6654f5`) based on the percentage of topics marked as learned. This is achieved using `background-clip: text`, `background-size: 200% 100%`, and animating `background-position`.
+- **Auto-Accordion**: Clicking a topic automatically expands its parent chapter and collapses all other chapters.
+- **Gravity Animation**: Collapsing/expanding chapter subtopics uses a smooth "gravity" effect (CSS Grid `grid-template-rows: 0fr` to `1fr` with a `cubic-bezier(0.22, 1, 0.36, 1)` transition).
+
+### Interactive Footer Buttons
+- **Mark as Learned**: Uses a professional checkmark icon doodle. Unchecked it is white with faded ink; checked it turns green (`#dff4e8` background, `#237957` text) with a slight rotation (`-rotate-3`).
+- **Navigation Arrows**: `<` and `>` doodle icons for previous/next.
+
+### Hand-Written Underlines (Inline Emphasis)
+For emphasizing inline text (like the active topic name inside paragraphs), use a custom hand-drawn SVG underline in a red/pink hue (e.g., `#ec5faa`).
+
+Example:
+```jsx
+<strong className="font-bold relative inline-block">
+  Highlighted Text
+  <svg className="absolute -bottom-1 left-0 h-2 w-full" preserveAspectRatio="none" viewBox="0 0 100 10">
+    <path d="M0 5 Q 50 0 100 5" stroke="#ec5faa" strokeWidth="3" fill="none" strokeLinecap="round"/>
+  </svg>
+</strong>
+```
+This should be reused for important inline text emphasis throughout the content.
+
 ## Current Key Assets
 
 Right-side illustration:

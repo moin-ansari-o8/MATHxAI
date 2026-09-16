@@ -23,6 +23,12 @@ export function Navigation() {
           >
             Journey
           </Link>
+          <Link 
+            to="/math-library" 
+            className={location.pathname === "/math-library" ? "rounded-full bg-sunshine px-5 py-1.5 shadow-[2px_3px_0_#17191f] border-2 border-ink" : ""}
+          >
+            Math Library
+          </Link>
           <a href="#experiments">Experiments</a>
           <a href="#about">About</a>
         </nav>

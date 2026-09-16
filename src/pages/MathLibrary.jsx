@@ -1,15 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
-import { journeyData } from "../data/journey";
-export function Journey() {
-  const [activeTopic, setActiveTopic] = useState(() => journeyData[0]?.topics[0]?.id || "");
+import { mathLibraryData } from "../data/mathLibrary";
+export function MathLibrary() {
+  const [activeTopic, setActiveTopic] = useState(() => mathLibraryData[0]?.topics[0]?.id || "");
   const [learnedTopics, setLearnedTopics] = useState(() => {
-    const saved = localStorage.getItem("learnedJourneyTopics");
+    const saved = localStorage.getItem("learnedMathTopics");
     return saved ? new Set(JSON.parse(saved)) : new Set();
   });
   const [collapsedChapters, setCollapsedChapters] = useState(() => {
-    return new Set(journeyData.slice(1).map(c => c.chapter));
+    return new Set(mathLibraryData.slice(1).map(c => c.chapter));
   });
-  const activeChapterObj = journeyData.find(chapter => chapter.topics.some(t => t.id === activeTopic));
+  const activeChapterObj = mathLibraryData.find(chapter => chapter.topics.some(t => t.id === activeTopic));
   
   const [pinnedChapters, setPinnedChapters] = useState(() => {
     return activeChapterObj ? new Set([activeChapterObj.chapter]) : new Set();
@@ -35,7 +35,7 @@ export function Journey() {
     }
   }, [activeChapterObj?.chapter, lastActiveChapter]);
   
-  const allTopics = journeyData.flatMap(chapter => chapter.topics);
+  const allTopics = mathLibraryData.flatMap(chapter => chapter.topics);
   const currentTopicIndex = allTopics.findIndex(t => t.id === activeTopic);
   const prevTopic = currentTopicIndex > 0 ? allTopics[currentTopicIndex - 1].id : null;
   const nextTopic = currentTopicIndex < allTopics.length - 1 ? allTopics[currentTopicIndex + 1].id : null;
@@ -67,7 +67,7 @@ export function Journey() {
     }
     
     setCollapsedChapters(prev => {
-      const newSet = new Set(journeyData.map(c => c.chapter));
+      const newSet = new Set(mathLibraryData.map(c => c.chapter));
       if (prev.has(chapterName)) {
         newSet.delete(chapterName);
       }
@@ -83,7 +83,7 @@ export function Journey() {
       const newSet = new Set(prev);
       if (newSet.has(topic)) newSet.delete(topic);
       else newSet.add(topic);
-      localStorage.setItem("learnedJourneyTopics", JSON.stringify([...newSet]));
+      localStorage.setItem("learnedMathTopics", JSON.stringify([...newSet]));
       return newSet;
     });
   };
@@ -129,7 +129,7 @@ export function Journey() {
               style={{ overflowAnchor: 'none' }}
             >
               <nav className="space-y-6 pt-4">
-                {journeyData.map((chapter) => {
+                {mathLibraryData.map((chapter) => {
                   const totalTopics = chapter.topics.length;
                   const learnedCount = chapter.topics.filter(t => learnedTopics.has(t.id)).length;
                   const progress = totalTopics > 0 ? (learnedCount / totalTopics) * 100 : 0;
