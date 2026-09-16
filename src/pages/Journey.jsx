@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { journeyData } from "../data/journey";
+import { WhatIsAI } from "../components/journey/WhatIsAI";
+import { WhatIsML } from "../components/journey/WhatIsML";
 export function Journey() {
   const [activeTopic, setActiveTopic] = useState(() => journeyData[0]?.topics[0]?.id || "");
   const [learnedTopics, setLearnedTopics] = useState(() => {
@@ -259,28 +261,35 @@ export function Journey() {
             )}
           </div>
 
-          {/* Content Body Placeholder */}
+          {/* Content Body */}
           <div className="flex-1 p-8 lg:p-10 bg-white/50 overflow-y-auto custom-scrollbar flex flex-col">
-            <div className="max-w-3xl">
-              <p className="text-lg font-medium leading-relaxed mb-10">
-                Welcome to the module on <strong className="font-bold relative inline-block">
-                  {activeTopicObj?.title}
-                  <svg className="absolute -bottom-1 left-0 h-2 w-full" preserveAspectRatio="none" viewBox="0 0 100 10">
-                    <path d="M0 5 Q 50 0 100 5" stroke="#ec5faa" strokeWidth="3" fill="none" strokeLinecap="round"/>
-                  </svg>
-                </strong>. This is where the core lesson content will be displayed.
-              </p>
-              
-              <div className="p-8 lg:p-12 rounded-[20px] border-[3px] border-ink border-dashed bg-[#faf8f4] flex flex-col items-center justify-center text-center">
-                <div className="w-20 h-20 rounded-full bg-sunshine border-[3px] border-ink shadow-[4px_5px_0_#17191f] mb-6 flex items-center justify-center rotate-6">
-                  <span className="text-3xl font-black font-display text-ink">?</span>
-                </div>
-                <h4 className="font-display font-bold text-2xl mb-3">Content coming soon</h4>
-                <p className="text-ink/65 text-base max-w-md font-medium leading-relaxed">
-                  The interactive visualizations, notebooks, and detailed explanations for this topic are currently being forged in our laboratory.
+            
+            {activeTopic === "what-is-ai" ? (
+              <WhatIsAI />
+            ) : activeTopic === "what-is-ml" ? (
+              <WhatIsML />
+            ) : (
+              <div className="max-w-3xl">
+                <p className="text-lg font-medium leading-relaxed mb-10">
+                  Welcome to the module on <strong className="font-bold relative inline-block">
+                    {activeTopicObj?.title}
+                    <svg className="absolute -bottom-1 left-0 h-2 w-full" preserveAspectRatio="none" viewBox="0 0 100 10">
+                      <path d="M0 5 Q 50 0 100 5" stroke="#ec5faa" strokeWidth="3" fill="none" strokeLinecap="round"/>
+                    </svg>
+                  </strong>. This is where the core lesson content will be displayed.
                 </p>
+                
+                <div className="p-8 lg:p-12 rounded-[20px] border-[3px] border-ink border-dashed bg-[#faf8f4] flex flex-col items-center justify-center text-center">
+                  <div className="w-20 h-20 rounded-full bg-sunshine border-[3px] border-ink shadow-[4px_5px_0_#17191f] mb-6 flex items-center justify-center rotate-6">
+                    <span className="text-3xl font-black font-display text-ink">?</span>
+                  </div>
+                  <h4 className="font-display font-bold text-2xl mb-3">Content coming soon</h4>
+                  <p className="text-ink/65 text-base max-w-md font-medium leading-relaxed">
+                    The interactive visualizations, notebooks, and detailed explanations for this topic are currently being forged in our laboratory.
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
 
             <div className="mt-auto pt-10 flex justify-end items-center gap-3">
               {prevTopic && (
