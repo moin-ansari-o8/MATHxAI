@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { mathLibraryData } from "../data/mathLibrary";
+import Tooltip from "../components/Tooltip";
 export function MathLibrary() {
   const [activeTopic, setActiveTopic] = useState(() => mathLibraryData[0]?.topics[0]?.id || "");
   const [learnedTopics, setLearnedTopics] = useState(() => {
@@ -90,6 +91,24 @@ export function MathLibrary() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const sidebarRef = useRef(null);
 
+  const [contentScrollProgress, setContentScrollProgress] = useState(0);
+  const [contentFullScrollProgress, setContentFullScrollProgress] = useState(0);
+  const contentRef = useRef(null);
+  const [isMaximized, setIsMaximized] = useState(false);
+
+  const handleContentScroll = () => {
+    if (contentRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = contentRef.current;
+      
+      const progress = Math.min(scrollTop / 100, 1);
+      setContentScrollProgress(progress);
+
+      const maxScroll = scrollHeight - clientHeight;
+      const fullProgress = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0;
+      setContentFullScrollProgress(fullProgress);
+    }
+  };
+
   const handleScroll = () => {
     if (sidebarRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = sidebarRef.current;
@@ -104,6 +123,24 @@ export function MathLibrary() {
     handleScroll();
   }, []);
 
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0;
+      setContentScrollProgress(0);
+      setContentFullScrollProgress(0);
+      setTimeout(handleContentScroll, 50);
+    }
+  }, [activeTopic]);
+
+  useEffect(() => {
+    if (isMaximized) {
+      document.body.classList.add('maximized-view');
+    } else {
+      document.body.classList.remove('maximized-view');
+    }
+    return () => document.body.classList.remove('maximized-view');
+  }, [isMaximized]);
+
   return (
     <div className="h-screen bg-paper text-ink overflow-hidden flex flex-col relative">
       {/* Playful Background Gradients */}
@@ -116,9 +153,10 @@ export function MathLibrary() {
       </div>
 
       {/* Workbook Layout */}
-      <div className="flex-1 min-h-0 relative z-10 mx-auto flex w-full max-w-[1500px] flex-col lg:flex-row gap-12 lg:gap-10 px-5 pt-28 pb-6 sm:px-8 lg:px-10 xl:px-14">
+      <div className="flex-1 min-h-0 relative mx-auto flex w-full max-w-[1500px] flex-col lg:flex-row gap-12 lg:gap-10 px-5 pt-28 pb-6 sm:px-8 lg:px-10 xl:px-14">
         
         {/* Floating Sidebar (Table of Contents) wrapper */}
+        {!isMaximized && (
         <div className="w-full lg:w-[320px] xl:w-[340px] flex-shrink-0 h-full relative flex flex-col">
           
           <div className="relative flex-1 min-h-0 w-full rounded-[24px] border-[3px] border-ink shadow-[5px_6px_0_#17191f] bg-[#fffdf8] overflow-hidden flex flex-col">
@@ -153,16 +191,17 @@ export function MathLibrary() {
                           </span>
                         </h3>
                         <div className="flex items-center gap-2">
-                          <button 
-                            onClick={(e) => togglePin(e, chapter.chapter)}
-                            className={`p-1.5 rounded-md transition-all ${pinnedChapters.has(chapter.chapter) ? 'text-[#ec5faa] bg-[#ec5faa]/10 opacity-100' : 'text-ink/20 hover:text-ink/50 opacity-0 group-hover:opacity-100'}`}
-                            title={pinnedChapters.has(chapter.chapter) ? "Unpin chapter" : "Pin chapter open"}
-                          >
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill={pinnedChapters.has(chapter.chapter) ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-300 ${pinnedChapters.has(chapter.chapter) ? "rotate-12 scale-110" : "hover:-rotate-12"} ${wigglingPin === chapter.chapter ? "animate-pin-wiggle" : ""}`}>
-                              <line x1="12" y1="17" x2="12" y2="22"></line>
-                              <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"></path>
-                            </svg>
-                          </button>
+                          <Tooltip text={pinnedChapters.has(chapter.chapter) ? "unpin chapter" : "pin chapter"}>
+                            <button 
+                              onClick={(e) => togglePin(e, chapter.chapter)}
+                              className={`p-1.5 rounded-md transition-all ${pinnedChapters.has(chapter.chapter) ? 'text-[#ec5faa] bg-[#ec5faa]/10 opacity-100' : 'text-ink/20 hover:text-ink/50 opacity-0 group-hover:opacity-100'}`}
+                            >
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill={pinnedChapters.has(chapter.chapter) ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-300 ${pinnedChapters.has(chapter.chapter) ? "rotate-12 scale-110" : "hover:-rotate-12"} ${wigglingPin === chapter.chapter ? "animate-pin-wiggle" : ""}`}>
+                                <line x1="12" y1="17" x2="12" y2="22"></line>
+                                <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"></path>
+                              </svg>
+                            </button>
+                          </Tooltip>
                           <button className="text-ink/40 group-hover:text-ink transition-colors">
                             <svg 
                               className={`w-4 h-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isExpanded ? "-rotate-90" : "rotate-0"}`} 
@@ -222,45 +261,96 @@ export function MathLibrary() {
             </div>
           </div>
         </div>
+        )}
 
         {/* Floating Lesson Page Wrapper */}
-        <div className="flex-1 w-full h-full relative flex flex-col min-h-0">
-          
-          {/* Top Border Badge */}
-          {activeChapterObj && (
-            <div className="absolute -top-5 left-8 lg:left-12 z-20 px-5 py-2 bg-violetPop text-white border-[3px] border-ink font-display font-bold text-sm uppercase tracking-widest shadow-[3px_4px_0_#17191f] rotate-[-2deg]">
-              {activeChapterObj.chapter}
-            </div>
-          )}
+        <div className={isMaximized ? "fixed inset-0 z-[9999] p-4 pt-10 sm:p-8 sm:pt-12 md:p-12 md:pt-16 bg-[#f4f5f8] flex flex-col min-h-0 animate-maximize" : "flex-1 w-full h-full flex flex-col min-h-0"}>
+          <div className="relative flex-1 w-full h-full flex flex-col min-h-0">
+            {/* Top Border Badge */}
+            {activeChapterObj && (
+              <div className="absolute -top-5 left-8 lg:left-12 z-20 px-5 py-2 bg-violetPop text-white border-[3px] border-ink font-display font-bold text-sm uppercase tracking-widest shadow-[3px_4px_0_#17191f] rotate-[-2deg]">
+                {activeChapterObj.chapter}
+              </div>
+            )}
 
-          <main className="flex-1 w-full h-full bg-[#fffdf8] rounded-[26px] border-[3px] border-ink shadow-[8px_10px_0_#17191f] flex flex-col relative rotate-[0.2deg] overflow-hidden">
+            {/* Maximize Button */}
+            <Tooltip 
+              text={isMaximized ? "unfocus" : "focus"} 
+              className="absolute -top-4 -right-4 lg:-top-5 lg:-right-5 z-[99999]"
+            >
+              <button
+                onClick={() => setIsMaximized(!isMaximized)}
+                className="p-2.5 rounded-xl bg-white border-[3px] border-ink shadow-[4px_4px_0_#17191f] text-ink hover:bg-sunshine transition-all flex items-center justify-center hover:-translate-y-1 hover:translate-x-1"
+                aria-label={isMaximized ? "Restore view" : "Maximize view"}
+              >
+                {isMaximized ? (
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+                  </svg>
+                )}
+              </button>
+            </Tooltip>
+
+            <main className="flex-1 w-full h-full bg-[#fffdf8] rounded-[26px] border-[3px] border-ink shadow-[8px_10px_0_#17191f] flex flex-col relative rotate-[0.2deg] overflow-hidden transition-all duration-300">
           
           {/* subtle paper texture / header decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_top_right,rgba(102,85,242,0.12),transparent_70%)] pointer-events-none" />
 
           {/* Content Header */}
-          <div className="p-8 lg:p-10 pb-6 border-b-2 border-ink/10 relative flex-shrink-0">
+          <div 
+            className="px-8 lg:px-10 border-b-2 border-ink/10 relative flex-shrink-0"
+            style={{ 
+              paddingTop: `${32 - (24 * contentScrollProgress)}px`, 
+              paddingBottom: `${24 - (16 * contentScrollProgress)}px`,
+            }}
+          >
 
             {activeChapterObj && (
-              <div className="relative z-10">
-                <h1 className="font-display text-4xl lg:text-5xl font-bold tracking-tight text-ink mb-4 flex items-center flex-wrap gap-x-3 mt-2">
-                  <span>{activeTopicObj?.title}</span>
-                  {/* Playful chalk rays decoration */}
-                  <svg className="inline-block h-10 w-10 opacity-35" viewBox="0 0 112 112" aria-hidden="true">
-                    <path d="M52 14 L36 42" stroke="#ffda45" strokeWidth="9" strokeLinecap="round" />
-                    <path d="M56 51 L84 34" stroke="#ffda45" strokeWidth="9" strokeLinecap="round" />
-                    <path d="M60 68 L94 73" stroke="#ffda45" strokeWidth="9" strokeLinecap="round" />
-                  </svg>
-                </h1>
-                <p className="text-ink/70 font-medium text-lg lg:text-xl max-w-2xl">
-                  {activeChapterObj.description}
-                </p>
+              <div className="relative z-10 flex flex-col">
+                <div className="flex items-center w-full">
+                  <div style={{ flexGrow: contentScrollProgress }} />
+                  <h1 
+                    className="font-display font-bold tracking-tight text-ink flex items-center flex-wrap gap-x-3"
+                    style={{
+                      fontSize: `${36 - (16 * contentScrollProgress)}px`,
+                      lineHeight: 1.2,
+                      marginTop: `${8 - (8 * contentScrollProgress)}px`
+                    }}
+                  >
+                    <span>{activeTopicObj?.title}</span>
+                    {/* Playful chalk rays decoration */}
+                    <svg 
+                      className="inline-block" 
+                      style={{ 
+                        width: `${40 - (16 * contentScrollProgress)}px`, 
+                        height: `${40 - (16 * contentScrollProgress)}px` 
+                      }} 
+                      viewBox="0 0 112 112" aria-hidden="true"
+                    >
+                      <path d="M52 14 L36 42" fill="none" stroke="#ffda45" strokeWidth="9" strokeLinecap="round" />
+                      <path d="M54 16 L38 41" fill="none" stroke="#fff0a6" strokeWidth="4" strokeLinecap="round" strokeOpacity="0.65" />
+                      <path d="M56 51 L84 34" fill="none" stroke="#ffda45" strokeWidth="9" strokeLinecap="round" />
+                      <path d="M58 50 L82 36" fill="none" stroke="#fff0a6" strokeWidth="4" strokeLinecap="round" strokeOpacity="0.65" />
+                      <path d="M60 68 L94 73" fill="none" stroke="#ffda45" strokeWidth="9" strokeLinecap="round" />
+                      <path d="M62 67 L91 72" fill="none" stroke="#fff0a6" strokeWidth="4" strokeLinecap="round" strokeOpacity="0.65" />
+                    </svg>
+                  </h1>
+                  <div style={{ flexGrow: 1 }} />
+                </div>
               </div>
             )}
           </div>
 
           {/* Content Body Placeholder */}
-          <div className="flex-1 p-8 lg:p-10 bg-white/50 overflow-y-auto custom-scrollbar flex flex-col">
+          <div 
+            ref={contentRef}
+            onScroll={handleContentScroll}
+            className="flex-1 p-8 lg:p-10 bg-white/50 overflow-y-auto hide-scrollbar flex flex-col"
+          >
             <div className="max-w-3xl">
               <p className="text-lg font-medium leading-relaxed mb-10">
                 Welcome to the module on <strong className="font-bold relative inline-block">
@@ -322,7 +412,16 @@ export function MathLibrary() {
               )}
             </div>
           </div>
+          
+          {/* Chalk Horizontal Scroll Progress Bar for Content */}
+          <div className="absolute bottom-0 left-0 right-0 h-[5px] opacity-100 z-20 pointer-events-none" aria-hidden="true">
+            <div 
+              className="absolute top-0 left-0 h-full bg-sunshine transition-all duration-75 ease-out"
+              style={{ width: `${contentFullScrollProgress > 0 ? Math.max(0, contentFullScrollProgress) : 0}%` }}
+            />
+          </div>
         </main>
+        </div>
         </div>
       </div>
     </div>

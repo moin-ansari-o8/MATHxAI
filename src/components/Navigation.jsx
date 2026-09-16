@@ -7,7 +7,7 @@ export function Navigation() {
   const location = useLocation();
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+    <div id="main-navigation" className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
       <header className="mx-auto flex w-full max-w-[1500px] items-center justify-between gap-6 px-5 py-6 sm:px-8 lg:px-10 xl:px-14 pointer-events-auto">
         <Logo />
         <nav className="hidden items-center gap-7 text-[15px] font-bold lg:flex">

@@ -18,7 +18,6 @@
 
 html {
   scroll-behavior: smooth;
-  scrollbar-gutter: stable;
 }
 
 body {
@@ -129,4 +128,21 @@ h3,
 
 .animate-pin-wiggle {
   animation: pin-wiggle 0.4s ease-in-out;
+}
+
+body.maximized-view #main-navigation {
+  display: none !important;
+}
+
+body.maximized-view {
+  overflow: hidden;
+}
+
+@keyframes maximize-fade {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-maximize {
+  animation: maximize-fade 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
