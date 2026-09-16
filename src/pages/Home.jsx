@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { Logo } from "../components/Logo";
 
 const featureCards = [
   {
@@ -102,28 +101,7 @@ export function Home() {
       <Decorations />
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,217,56,0.16),transparent_24%),radial-gradient(circle_at_74%_70%,rgba(102,85,242,0.12),transparent_27%)]" />
       <DiscoveryNote />
-      <section className="page-shell relative mx-auto flex min-h-screen w-full max-w-[1500px] flex-col px-5 py-4 sm:px-8 lg:px-10 xl:px-14">
-        <header className="flex items-center justify-between gap-6">
-          <Logo />
-          <nav className="hidden items-center gap-7 text-[15px] font-bold lg:flex">
-            <Link className="rounded-full bg-sunshine px-5 py-1.5 shadow-[2px_3px_0_#17191f] border-2 border-ink" to="/">
-              Home
-            </Link>
-            <Link to="/journey">Journey</Link>
-            <a href="#experiments">Experiments</a>
-            <a href="#about">About</a>
-          </nav>
-          <div className="hidden items-center gap-6 xl:flex">
-            <label className="flex h-10 w-52 items-center gap-3 rounded-full border-2 border-ink bg-[#fffdf8] px-4 shadow-[2px_3px_0_#17191f]">
-              <Search className="h-4 w-4" strokeWidth={3} />
-              <input
-                className="w-full bg-transparent text-[13px] font-semibold outline-none placeholder:text-ink/60"
-                placeholder="Search concepts..."
-              />
-            </label>
-          </div>
-        </header>
-
+      <section className="page-shell relative mx-auto flex min-h-screen w-full max-w-[1500px] flex-col px-5 pt-28 pb-4 sm:px-8 lg:px-10 xl:px-14">
         <div className="hero-grid grid flex-1 items-center gap-6 pt-9 lg:grid-cols-[0.82fr_1.18fr] lg:pt-5 xl:gap-8">
           <div className="z-10 order-2 lg:order-1">
             <h1 className="hero-title max-w-2xl text-center sm:text-left overflow-visible pb-0 sm:pb-2 font-display text-[11.5vw] font-bold leading-[0.86] tracking-normal text-ink sm:text-[82px] lg:text-[80px] xl:text-[88px] 2xl:text-[96px] whitespace-nowrap sm:whitespace-normal">

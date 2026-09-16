@@ -1,9 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Search } from "lucide-react";
 import { journeyData } from "../data/journey";
-import { Logo } from "../components/Logo";
-
 export function Journey() {
   const [activeTopic, setActiveTopic] = useState("What is ML?");
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -34,30 +30,8 @@ export function Journey() {
         <div className="absolute -right-11 bottom-[10%] h-28 w-28 rounded-full border-[3px] border-ink bg-sunshine opacity-50" />
       </div>
 
-      {/* Header */}
-      <header className="flex-shrink-0 relative z-10 mx-auto flex w-full max-w-[1500px] items-center justify-between gap-6 px-5 py-6 sm:px-8 lg:px-10 xl:px-14">
-        <Logo />
-        <nav className="hidden items-center gap-7 text-[15px] font-bold lg:flex">
-          <Link to="/">Home</Link>
-          <Link to="/journey" className="rounded-full bg-sunshine px-5 py-1.5 shadow-[2px_3px_0_#17191f] border-2 border-ink">
-            Journey
-          </Link>
-          <a href="#experiments">Experiments</a>
-          <a href="#about">About</a>
-        </nav>
-        <div className="hidden items-center gap-6 xl:flex">
-          <label className="flex h-10 w-52 items-center gap-3 rounded-full border-2 border-ink bg-[#fffdf8] px-4 shadow-[2px_3px_0_#17191f]">
-            <Search className="h-4 w-4" strokeWidth={3} />
-            <input
-              className="w-full bg-transparent text-[13px] font-semibold outline-none placeholder:text-ink/60"
-              placeholder="Search concepts..."
-            />
-          </label>
-        </div>
-      </header>
-
       {/* Workbook Layout */}
-      <div className="flex-1 min-h-0 relative z-10 mx-auto flex w-full max-w-[1500px] flex-col lg:flex-row gap-12 lg:gap-10 px-5 pt-2 pb-6 sm:px-8 lg:px-10 xl:px-14">
+      <div className="flex-1 min-h-0 relative z-10 mx-auto flex w-full max-w-[1500px] flex-col lg:flex-row gap-12 lg:gap-10 px-5 pt-28 pb-6 sm:px-8 lg:px-10 xl:px-14">
         
         {/* Floating Sidebar (Table of Contents) wrapper */}
         <div className="w-full lg:w-[320px] xl:w-[340px] flex-shrink-0 h-full relative flex flex-col">
