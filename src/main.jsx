@@ -45,20 +45,45 @@ const featureCards = [
 ];
 
 function Logo() {
+  const circleRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!circleRef.current) return;
+      const x = (e.clientX / window.innerWidth) - 0.5;
+      const y = (e.clientY / window.innerHeight) - 0.5;
+      
+      const rot = -9 + (x * 24); 
+      const tx = x * 8;
+      const ty = y * 8;
+      
+      circleRef.current.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg)`;
+    };
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
     <a className="logo group inline-flex flex-col" href="/" aria-label="Math x AI home">
       <span>
         <span className="relative inline-flex items-center gap-2 font-display text-[30px] font-bold leading-none tracking-normal text-ink lg:text-[32px]">
           <span>MATH</span>
-          <span className="grid h-8 w-8 rotate-[-9deg] place-items-center rounded-full border-2 border-ink bg-sunshine text-[22px] shadow-[2px_3px_0_#17191f] transition group-hover:rotate-[-2deg]">
-            x
+          <span 
+            ref={circleRef}
+            className="relative flex h-8 w-8 flex-col items-center justify-center rounded-full border-2 border-ink bg-sunshine shadow-[2px_3px_0_#17191f] transition-transform duration-100 ease-out"
+            style={{ transform: "rotate(-9deg)" }}
+          >
+            <span className="mb-2 text-[18px] font-black leading-none">x</span>
+            <span className="absolute bottom-[1px] text-[13px] font-black leading-none -rotate-[95deg]">
+              (
+            </span>
           </span>
           <span className="bg-gradient-to-r from-violetPop to-[#8b62ff] bg-clip-text text-transparent">
             AI
           </span>
           <svg
             aria-hidden="true"
-            className="absolute -bottom-2 left-0 h-3 w-full"
+            className="absolute -bottom-3 left-0 h-3 w-full"
             preserveAspectRatio="none"
             viewBox="0 0 210 14"
           >
@@ -71,8 +96,8 @@ function Logo() {
             />
           </svg>
         </span>
-        <span className="block text-[8px] font-bold uppercase tracking-[0.08em] text-ink/75 lg:text-[9px]">
-          Same numbers. Bigger possibilities.
+        <span className="mt-2 block text-center text-[8px] font-bold uppercase tracking-[0.15em] text-ink/75 lg:text-[9px]">
+          Explore . Play . Learn
         </span>
       </span>
     </a>
@@ -160,13 +185,7 @@ function App() {
         </header>
 
         <div className="hero-grid grid flex-1 items-center gap-6 pt-9 lg:grid-cols-[0.82fr_1.18fr] lg:pt-5 xl:gap-8">
-          <p className="order-first col-span-full mb-1 text-center text-xs font-black uppercase tracking-[0.22em] lg:hidden">
-            Explore <span className="mx-3">.</span> Play <span className="mx-3">.</span> Learn
-          </p>
           <div className="z-10 order-2 lg:order-1">
-            <p className="mb-3 hidden text-xs font-black uppercase tracking-[0.22em] lg:block lg:text-[13px]">
-              Explore <span className="mx-3">.</span> Play <span className="mx-3">.</span> Learn
-            </p>
             <h1 className="hero-title max-w-2xl text-center sm:text-left overflow-visible pb-0 sm:pb-2 font-display text-[11.5vw] font-bold leading-[0.86] tracking-normal text-ink sm:text-[82px] lg:text-[80px] xl:text-[88px] 2xl:text-[96px] whitespace-nowrap sm:whitespace-normal">
               AI is not
               <span className="relative inline-block sm:block overflow-visible bg-gradient-to-r from-violetPop to-[#7666ff] bg-clip-text pb-5 pt-1 text-[1.12em] text-transparent ml-2 sm:ml-[1.2em] lg:ml-[1.12em]">
