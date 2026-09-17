@@ -63,11 +63,11 @@ function Decorations() {
   );
 }
 
-function DiscoveryNote() {
+function DiscoveryNote({ className = "" }) {
   return (
     <div
       aria-hidden="true"
-      className="quote-note absolute bottom-[126px] right-5 z-20 hidden w-[310px] rotate-[-2deg] rounded-sm border border-ink/10 bg-[#ffe36a] px-5 py-4 text-left font-display text-[16px] font-semibold leading-tight shadow-[5px_6px_0_#17191f] xl:block"
+      className={`quote-note rounded-sm border border-ink/10 bg-[#ffe36a] px-5 py-4 text-left font-display text-[16px] font-semibold leading-tight shadow-[5px_6px_0_#17191f] ${className}`}
     >
       &quot;Mathematics is the language in which the universe is written.&quot;
       <span className="mt-2 block text-right text-sm font-bold">- Galileo Galilei</span>
@@ -100,7 +100,7 @@ export function Home() {
     <main className="relative min-h-screen overflow-x-hidden bg-paper text-ink">
       <Decorations />
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,217,56,0.16),transparent_24%),radial-gradient(circle_at_74%_70%,rgba(102,85,242,0.12),transparent_27%)]" />
-      <DiscoveryNote />
+      <DiscoveryNote className="absolute bottom-[126px] right-5 z-20 hidden w-[310px] rotate-[-2deg] xl:block" />
       <section className="page-shell relative mx-auto flex min-h-screen w-full max-w-[1500px] flex-col px-5 pt-28 pb-4 sm:px-8 lg:px-10 xl:px-14">
         <div className="hero-grid grid flex-1 items-center gap-6 pt-9 lg:grid-cols-[0.82fr_1.18fr] lg:pt-5 xl:gap-8">
           <div className="z-10 order-2 lg:order-1">
@@ -237,6 +237,10 @@ export function Home() {
                 </div>
               ))}
             </div>
+          </div>
+          
+          <div className="xl:hidden mt-12 mb-8 flex justify-center px-5">
+            <DiscoveryNote className="w-full max-w-[310px] rotate-[-2deg]" />
           </div>
         </section>
       </section>
