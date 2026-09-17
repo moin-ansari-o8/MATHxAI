@@ -245,6 +245,7 @@ export function Home() {
             <DiscoveryNote className="w-full max-w-[310px] rotate-[-2deg]" />
           </div>
         </section>
+      </section>
       </div>
     </main>
   );
