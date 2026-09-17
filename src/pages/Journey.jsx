@@ -121,7 +121,7 @@ export function Journey() {
     const deltaY = Math.abs(touchEndY - touchStartY.current);
 
     if (deltaY < 50 && Math.abs(deltaX) > 50) {
-      if (deltaX > 0 && touchStartX.current < 50) {
+      if (deltaX > 0) {
         setIsMobileDrawerOpen(true);
       } else if (deltaX < 0 && isMobileDrawerOpen) {
         setIsMobileDrawerOpen(false);
