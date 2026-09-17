@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Search } from "lucide-react";
+import { Search, Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 
 export function Navigation() {
   const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const hideOnMobilePaths = ['/journey', '/math-library'];
   const isHiddenOnMobile = hideOnMobilePaths.includes(location.pathname);
 
   return (
-    <div id="main-navigation" className={`fixed top-0 left-0 right-0 z-[50] bg-[#fffdf8]/60 backdrop-blur-md ${isHiddenOnMobile ? 'hidden lg:block' : ''}`}>
+    <div id="main-navigation" className={`fixed top-0 left-0 right-0 z-[50] ${isHiddenOnMobile ? 'hidden lg:block' : ''}`}>
       <header className="mx-auto flex w-full max-w-[1500px] items-center justify-between gap-6 px-5 py-4 sm:px-8 lg:px-10 xl:px-14">
-        <Logo />
+        <div className="bg-[#fffdf8] lg:bg-transparent rounded-[20px] lg:rounded-none px-2 lg:px-0 py-1 lg:py-0 border-[3px] border-ink lg:border-transparent shadow-[2px_3px_0_#17191f] lg:shadow-none">
+          <Logo />
+        </div>
         <nav className="hidden items-center gap-7 text-[15px] font-bold lg:flex">
           <Link 
             to="/"
@@ -42,6 +45,56 @@ export function Navigation() {
               placeholder="Search concepts..."
             />
           </label>
+        </div>
+
+        {/* Mobile Menu Toggle & Dropdown */}
+        <div className="lg:hidden relative">
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="p-2 bg-[#fffdf8] rounded-xl border-[3px] border-ink shadow-[2px_3px_0_#17191f] hover:bg-sunshine transition-all"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X className="w-7 h-7 text-ink" strokeWidth={3} /> : <Menu className="w-7 h-7 text-ink" strokeWidth={3} />}
+          </button>
+          
+          {isMobileMenuOpen && (
+            <>
+              <div className="fixed inset-0 z-40" onClick={() => setIsMobileMenuOpen(false)} />
+              <div className="absolute top-full right-0 mt-3 w-56 bg-[#fffdf8] border-[3px] border-ink shadow-[4px_5px_0_#17191f] rounded-xl z-50 flex flex-col p-2 animate-in fade-in slide-in-from-top-2">
+                <nav className="flex flex-col gap-1 text-base font-bold font-display">
+                  <Link 
+                    to="/"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={location.pathname === "/" ? "inline-block rounded-lg bg-sunshine px-4 py-3 shadow-[2px_2px_0_#17191f] border-2 border-ink w-full" : "px-4 py-3 w-full hover:bg-black/5 rounded-lg border-2 border-transparent"} 
+                  >
+                    Home
+                  </Link>
+                  <Link 
+                    to="/journey" 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={location.pathname === "/journey" ? "inline-block rounded-lg bg-sunshine px-4 py-3 shadow-[2px_2px_0_#17191f] border-2 border-ink w-full" : "px-4 py-3 w-full hover:bg-black/5 rounded-lg border-2 border-transparent"}
+                  >
+                    Journey
+                  </Link>
+                  <Link 
+                    to="/math-library" 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={location.pathname === "/math-library" ? "inline-block rounded-lg bg-sunshine px-4 py-3 shadow-[2px_2px_0_#17191f] border-2 border-ink w-full" : "px-4 py-3 w-full hover:bg-black/5 rounded-lg border-2 border-transparent"}
+                  >
+                    Math Library
+                  </Link>
+                  <a href="#experiments" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 w-full hover:bg-black/5 rounded-lg border-2 border-transparent">Experiments</a>
+                  <Link 
+                    to="/about" 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={location.pathname === "/about" ? "inline-block rounded-lg bg-sunshine px-4 py-3 shadow-[2px_2px_0_#17191f] border-2 border-ink w-full" : "px-4 py-3 w-full hover:bg-black/5 rounded-lg border-2 border-transparent"}
+                  >
+                    About
+                  </Link>
+                </nav>
+              </div>
+            </>
+          )}
         </div>
       </header>
     </div>

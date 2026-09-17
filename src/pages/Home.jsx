@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import { Decorations } from "../components/Decorations";
 
 const featureCards = [
   {
@@ -42,26 +43,6 @@ const featureCards = [
     iconColor: "text-[#237957]",
   },
 ];
-
-function Decorations() {
-  return (
-    <div aria-hidden="true" className="pointer-events-none fixed inset-0 overflow-hidden">
-      <div className="absolute -bottom-16 -left-20 h-36 w-36 rounded-full border-[3px] border-ink bg-violetPop sm:h-40 sm:w-40" />
-      <div className="absolute -right-11 top-4 h-28 w-28 rounded-full border-[3px] border-ink bg-sunshine" />
-      <div className="absolute -right-16 bottom-28 hidden h-32 w-32 rounded-full border-[3px] border-ink bg-[#62a9ff] lg:block" />
-      <div className="absolute -left-10 top-[31%] block h-20 w-16 rotate-[25deg] rounded-xl border-[3px] border-ink bg-[#c9baff]" />
-      <div className="absolute left-3 top-36 grid gap-3">
-        {[0, 1, 2, 3, 4, 5].map((dot) => (
-          <span
-            className="h-1.5 w-1.5 rounded-full bg-ink"
-            key={dot}
-            style={{ transform: `translateX(${[0, -2, 9, 2, -3, 7][dot]}px)` }}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
 
 function DiscoveryNote({ className = "" }) {
   return (
@@ -97,13 +78,12 @@ export function Home() {
   );
 
   return (
-    <main className="relative h-[100dvh] overflow-hidden bg-paper text-ink">
+    <main className="relative min-h-screen overflow-x-hidden bg-paper text-ink">
       <Decorations />
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,217,56,0.16),transparent_24%),radial-gradient(circle_at_74%_70%,rgba(102,85,242,0.12),transparent_27%)]" />
       <DiscoveryNote className="absolute bottom-[126px] right-5 z-20 hidden w-[310px] rotate-[-2deg] xl:block" />
       
-      <div className="absolute inset-x-0 bottom-0 top-[84px] overflow-y-auto overflow-x-hidden">
-        <section className="page-shell relative mx-auto flex min-h-full w-full max-w-[1500px] flex-col px-5 pt-8 pb-4 sm:px-8 lg:px-10 xl:px-14">
+      <section className="page-shell relative mx-auto flex min-h-screen w-full max-w-[1500px] flex-col px-5 pt-28 pb-4 sm:px-8 lg:px-10 xl:px-14">
         <div className="hero-grid grid flex-1 items-center gap-6 pt-9 lg:grid-cols-[0.82fr_1.18fr] lg:pt-5 xl:gap-8">
           <div className="z-10 order-2 lg:order-1">
             <h1 className="hero-title max-w-2xl text-center sm:text-left overflow-visible pb-0 sm:pb-2 font-display text-[11.5vw] font-bold leading-[0.86] tracking-normal text-ink sm:text-[82px] lg:text-[80px] xl:text-[88px] 2xl:text-[96px] whitespace-nowrap sm:whitespace-normal">
@@ -245,8 +225,7 @@ export function Home() {
             <DiscoveryNote className="w-full max-w-[310px] rotate-[-2deg]" />
           </div>
         </section>
-        </section>
-      </div>
+      </section>
     </main>
   );
 }

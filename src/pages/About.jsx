@@ -1,9 +1,11 @@
 import React from "react";
 import QRCode from "react-qr-code";
+import { Decorations } from "../components/Decorations";
 
 export function About() {
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-paper text-ink pt-32 pb-20">
+      <Decorations />
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,217,56,0.16),transparent_24%),radial-gradient(circle_at_74%_70%,rgba(102,85,242,0.12),transparent_27%)]" />
       
       <section className="relative z-10 mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-10 xl:px-14">

@@ -6,6 +6,7 @@ import { WhatIsML } from "../components/journey/WhatIsML";
 import { HowDoesAILearn } from "../components/journey/HowDoesAILearn";
 import { MobileDrawer } from "../components/MobileDrawer";
 import { Menu } from "lucide-react";
+import { Decorations } from "../components/Decorations";
 export function Journey() {
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
   const [activeTopic, setActiveTopic] = useState(() => journeyData[0]?.topics[0]?.id || "");
@@ -279,14 +280,8 @@ export function Journey() {
 
       {/* Mobile Header Removed */}
 
-      {/* Playful Background Gradients */}
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(255,217,56,0.1),transparent_24%),radial-gradient(circle_at_84%_80%,rgba(102,85,242,0.08),transparent_27%)]" />
-      
-      {/* Floating Edge Decorations */}
-      <div aria-hidden="true" className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -left-10 top-[20%] block h-20 w-16 rotate-[25deg] rounded-xl border-[3px] border-ink bg-[#c9baff] opacity-50" />
-        <div className="absolute -right-11 bottom-[10%] h-28 w-28 rounded-full border-[3px] border-ink bg-sunshine opacity-50" />
-      </div>
+      <Decorations />
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,217,56,0.16),transparent_24%),radial-gradient(circle_at_74%_70%,rgba(102,85,242,0.12),transparent_27%)]" />
 
       {/* Workbook Layout */}
       <div className="flex-1 min-h-0 relative mx-auto flex w-full max-w-[1500px] flex-col lg:flex-row gap-12 lg:gap-10 p-0 lg:px-5 lg:pt-28 lg:pb-6 sm:p-0 lg:p-10 xl:px-14">
@@ -348,7 +343,7 @@ export function Journey() {
               </button>
             </Tooltip>
 
-            <main className="flex-1 w-full h-full bg-[#fffdf8] lg:rounded-[26px] lg:border-[3px] lg:border-ink lg:shadow-[8px_10px_0_#17191f] flex flex-col relative lg:rotate-[0.2deg] overflow-hidden transition-all duration-300">
+            <main className="flex-1 w-full h-full bg-transparent lg:bg-[#fffdf8] lg:rounded-[26px] lg:border-[3px] lg:border-ink lg:shadow-[8px_10px_0_#17191f] flex flex-col relative lg:rotate-[0.2deg] overflow-hidden transition-all duration-300">
           
           {/* subtle paper texture / header decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_top_right,rgba(102,85,242,0.12),transparent_70%)] pointer-events-none" />
