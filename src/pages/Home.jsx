@@ -45,7 +45,7 @@ const featureCards = [
 
 function Decorations() {
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div aria-hidden="true" className="pointer-events-none fixed inset-0 overflow-hidden">
       <div className="absolute -bottom-16 -left-20 h-36 w-36 rounded-full border-[3px] border-ink bg-violetPop sm:h-40 sm:w-40" />
       <div className="absolute -right-11 top-4 h-28 w-28 rounded-full border-[3px] border-ink bg-sunshine" />
       <div className="absolute -right-16 bottom-28 hidden h-32 w-32 rounded-full border-[3px] border-ink bg-[#62a9ff] lg:block" />

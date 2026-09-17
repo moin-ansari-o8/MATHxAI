@@ -9,8 +9,8 @@ export function Navigation() {
   const isHiddenOnMobile = hideOnMobilePaths.includes(location.pathname);
 
   return (
-    <div id="main-navigation" className={`fixed top-0 left-0 right-0 z-[50] pointer-events-none ${isHiddenOnMobile ? 'hidden lg:block' : ''}`}>
-      <header className="mx-auto flex w-full max-w-[1500px] items-center justify-between gap-6 px-5 py-6 sm:px-8 lg:px-10 xl:px-14 pointer-events-auto">
+    <div id="main-navigation" className={`fixed top-0 left-0 right-0 z-[50] bg-paper border-b-[3px] border-ink ${isHiddenOnMobile ? 'hidden lg:block' : ''}`}>
+      <header className="mx-auto flex w-full max-w-[1500px] items-center justify-between gap-6 px-5 py-4 sm:px-8 lg:px-10 xl:px-14">
         <Logo />
         <nav className="hidden items-center gap-7 text-[15px] font-bold lg:flex">
           <Link 
