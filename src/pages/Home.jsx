@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import QRCode from "react-qr-code";
 
 const featureCards = [
   {
@@ -246,52 +245,6 @@ export function Home() {
             <DiscoveryNote className="w-full max-w-[310px] rotate-[-2deg]" />
           </div>
         </section>
-
-        <section id="about" className="relative z-10 mt-16 md:mt-24 pb-20">
-          <div className="mx-auto max-w-4xl rounded-3xl border-[3px] border-ink bg-[#fffdf8] p-8 shadow-[8px_10px_0_#17191f] md:p-12">
-            <h2 className="mb-6 text-center font-display text-[32px] font-bold md:text-[40px]">
-              About the Creator
-            </h2>
-            <div className="flex flex-col items-center gap-10 md:flex-row md:justify-around">
-              
-              <div className="flex flex-col items-center gap-4 text-center md:items-start md:text-left">
-                <p className="max-w-[400px] text-[16px] font-medium leading-relaxed text-ink/85">
-                  Built with curiosity by <span className="font-bold text-ink">Moin Ansari</span>. This project combines playful neo-brutalist design with complex mathematical visualizations to make AI feel more approachable and fun.
-                </p>
-                <div className="mt-4 flex flex-col gap-3 font-semibold text-[15px]">
-                  <a href="mailto:moin.edu01@gmail.com" className="flex items-center gap-3 hover:text-violetPop transition-colors">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-ink bg-[#c9baff] shadow-[2px_2px_0_#17191f]">✉️</span>
-                    moin.edu01@gmail.com
-                  </a>
-                  <a href="https://yourstrulymoin.vercel.app/" target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-[#d83f97] transition-colors">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-ink bg-sunshine shadow-[2px_2px_0_#17191f]">🌐</span>
-                    yourstrulymoin.vercel.app
-                  </a>
-                  <a href="https://www.linkedin.com/in/moin-ansari1817/" target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-[#1f6fb2] transition-colors">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-ink bg-[#62a9ff] shadow-[2px_2px_0_#17191f]">💼</span>
-                    in/moin-ansari1817
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex flex-col items-center gap-4">
-                <div className="rounded-2xl border-[3px] border-ink bg-white p-4 shadow-[5px_6px_0_#17191f] rotate-[2deg] transition hover:rotate-0">
-                  <QRCode
-                    value="https://mathh-x-ai.vercel.app"
-                    bgColor="#ffffff"
-                    fgColor="#17191f"
-                    size={160}
-                  />
-                </div>
-                <span className="font-display text-[15px] font-bold text-ink bg-sunshine px-3 py-1 rounded-full border-2 border-ink shadow-[2px_2px_0_#17191f]">
-                  Scan to visit
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-      </section>
       </div>
     </main>
   );

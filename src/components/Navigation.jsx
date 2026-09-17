@@ -32,7 +32,7 @@ export function Navigation() {
             Math Library
           </Link>
           <a href="#experiments">Experiments</a>
-          <a href="#about">About</a>
+          <Link to="/about">About</Link>
         </nav>
         <div className="hidden items-center gap-6 xl:flex">
           <label className="flex h-10 w-52 items-center gap-3 rounded-full border-2 border-ink bg-[#fffdf8] px-4 shadow-[2px_3px_0_#17191f]">

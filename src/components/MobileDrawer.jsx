@@ -81,7 +81,13 @@ export function MobileDrawer({ isOpen, onClose, sidebarContent, pageTitle }) {
                       Math Library
                     </Link>
                     <a href="#experiments" onClick={onClose} className="px-4 py-3 w-full hover:bg-black/5 rounded-lg border-2 border-transparent">Experiments</a>
-                    <a href="#about" onClick={onClose} className="px-4 py-3 w-full hover:bg-black/5 rounded-lg border-2 border-transparent">About</a>
+                    <Link 
+                      to="/about" 
+                      onClick={onClose} 
+                      className={location.pathname === "/about" ? "inline-block rounded-lg bg-sunshine px-4 py-3 shadow-[2px_2px_0_#17191f] border-2 border-ink w-full" : "px-4 py-3 w-full hover:bg-black/5 rounded-lg border-2 border-transparent"}
+                    >
+                      About
+                    </Link>
                   </nav>
                 </div>
               </>
