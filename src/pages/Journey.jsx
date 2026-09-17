@@ -4,7 +4,10 @@ import Tooltip from "../components/Tooltip";
 import { WhatIsAI } from "../components/journey/WhatIsAI";
 import { WhatIsML } from "../components/journey/WhatIsML";
 import { HowDoesAILearn } from "../components/journey/HowDoesAILearn";
+import { MobileDrawer } from "../components/MobileDrawer";
+import { Menu } from "lucide-react";
 export function Journey() {
+  const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
   const [activeTopic, setActiveTopic] = useState(() => journeyData[0]?.topics[0]?.id || "");
   const [learnedTopics, setLearnedTopics] = useState(() => {
     const saved = localStorage.getItem("learnedJourneyTopics");
@@ -44,6 +47,10 @@ export function Journey() {
   const prevTopic = currentTopicIndex > 0 ? allTopics[currentTopicIndex - 1].id : null;
   const nextTopic = currentTopicIndex < allTopics.length - 1 ? allTopics[currentTopicIndex + 1].id : null;
   const activeTopicObj = allTopics.find(t => t.id === activeTopic);
+  
+  const activeChapterTotalTopics = activeChapterObj ? activeChapterObj.topics.length : 0;
+  const activeChapterLearnedCount = activeChapterObj ? activeChapterObj.topics.filter(t => learnedTopics.has(t.id)).length : 0;
+  const activeChapterProgress = activeChapterTotalTopics > 0 ? (activeChapterLearnedCount / activeChapterTotalTopics) * 100 : 0;
 
   const togglePin = (e, chapterName) => {
     e.stopPropagation();
@@ -99,6 +106,29 @@ export function Journey() {
   const contentRef = useRef(null);
   const [isMaximized, setIsMaximized] = useState(false);
 
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const deltaX = touchEndX - touchStartX.current;
+    const deltaY = Math.abs(touchEndY - touchStartY.current);
+
+    if (deltaY < 50 && Math.abs(deltaX) > 50) {
+      if (deltaX > 0 && touchStartX.current < 50) {
+        setIsMobileDrawerOpen(true);
+      } else if (deltaX < 0 && isMobileDrawerOpen) {
+        setIsMobileDrawerOpen(false);
+      }
+    }
+  };
+
   const handleContentScroll = () => {
     if (contentRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = contentRef.current;
@@ -144,8 +174,111 @@ export function Journey() {
     return () => document.body.classList.remove('maximized-view');
   }, [isMaximized]);
 
+  const sidebarNav = (
+    <nav className="space-y-6 pt-4">
+      {journeyData.map((chapter) => {
+        const totalTopics = chapter.topics.length;
+        const learnedCount = chapter.topics.filter(t => learnedTopics.has(t.id)).length;
+        const progress = totalTopics > 0 ? (learnedCount / totalTopics) * 100 : 0;
+        
+        const isExpanded = !collapsedChapters.has(chapter.chapter);
+        
+        return (
+          <div key={chapter.chapter}>
+            <div className="flex items-center justify-between px-2 mb-2 group cursor-pointer" onClick={() => toggleChapter(chapter.chapter)}>
+              <h3 className="font-display text-[12px] uppercase tracking-widest font-bold">
+                <span
+                  className="bg-clip-text text-transparent inline-block"
+                  style={{
+                    backgroundImage: `linear-gradient(to right, #6654f5 50%, rgba(23, 25, 31, 0.4) 50%)`,
+                    backgroundSize: "200% 100%",
+                    backgroundPosition: `${100 - progress}% 0`,
+                    transition: "background-position 1s cubic-bezier(0.22, 1, 0.36, 1)"
+                  }}
+                >
+                  {chapter.chapter}
+                </span>
+              </h3>
+              <div className="flex items-center gap-2">
+                <Tooltip text={pinnedChapters.has(chapter.chapter) ? "unpin chapter" : "pin chapter"}>
+                  <button 
+                    onClick={(e) => togglePin(e, chapter.chapter)}
+                    className={`p-1.5 rounded-md transition-all ${pinnedChapters.has(chapter.chapter) ? 'text-[#ec5faa] bg-[#ec5faa]/10 opacity-100' : 'text-ink/20 hover:text-ink/50 opacity-0 group-hover:opacity-100'}`}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill={pinnedChapters.has(chapter.chapter) ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-300 ${pinnedChapters.has(chapter.chapter) ? "rotate-12 scale-110" : "hover:-rotate-12"} ${wigglingPin === chapter.chapter ? "animate-pin-wiggle" : ""}`}>
+                      <line x1="12" y1="17" x2="12" y2="22"></line>
+                      <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"></path>
+                    </svg>
+                  </button>
+                </Tooltip>
+                <button className="text-ink/40 group-hover:text-ink transition-colors">
+                  <svg 
+                    className={`w-4 h-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isExpanded ? "-rotate-90" : "rotate-0"}`} 
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"
+                  >
+                    <path d="M6 9l6 6 6-6"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div 
+              className="grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              style={{ gridTemplateRows: !isExpanded ? "0fr" : "1fr" }}
+            >
+              <div className="overflow-hidden -mx-2 px-2">
+                <ul className="space-y-1.5 pb-2">
+            {chapter.topics.map((topicObj) => {
+              const isActive = activeTopic === topicObj.id;
+              const isLearned = learnedTopics.has(topicObj.id);
+              return (
+                <li key={topicObj.id}>
+                  <button
+                    onClick={() => {
+                      setActiveTopic(topicObj.id);
+                      setIsMobileDrawerOpen(false);
+                    }}
+                    className={`w-full text-left px-3 py-2 rounded-xl text-[14px] font-semibold transition-all flex items-center justify-between gap-2 ${
+                      isActive
+                        ? "bg-sunshine border-2 border-ink shadow-[2px_2px_0_#17191f] text-ink translate-x-1"
+                        : "text-ink/75 hover:bg-black/5 hover:text-ink border-2 border-transparent"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className={isActive ? "" : "ml-4"}>{topicObj.title}</span>
+                    </div>
+                    {isLearned && (
+                      <svg className="w-4 h-4 shrink-0 text-[#237957] opacity-80 rotate-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M20 6L9 17l-5-5"/>
+                      </svg>
+                    )}
+                  </button>
+                </li>
+              );
+            })}
+                </ul>
+              </div>
+            </div>
+        </div>
+        );
+      })}
+    </nav>
+  );
+
   return (
-    <div className="h-screen bg-paper text-ink overflow-hidden flex flex-col relative">
+    <div 
+      className="h-screen bg-paper text-ink overflow-hidden flex flex-col relative"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      <MobileDrawer 
+        isOpen={isMobileDrawerOpen} 
+        onClose={() => setIsMobileDrawerOpen(false)} 
+        sidebarContent={<div className="h-full overflow-y-auto p-6 hide-scrollbar">{sidebarNav}</div>} 
+        pageTitle="Journey" 
+      />
+
+      {/* Mobile Header Removed */}
+
       {/* Playful Background Gradients */}
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(255,217,56,0.1),transparent_24%),radial-gradient(circle_at_84%_80%,rgba(102,85,242,0.08),transparent_27%)]" />
       
@@ -156,11 +289,11 @@ export function Journey() {
       </div>
 
       {/* Workbook Layout */}
-      <div className="flex-1 min-h-0 relative mx-auto flex w-full max-w-[1500px] flex-col lg:flex-row gap-12 lg:gap-10 px-5 pt-28 pb-6 sm:px-8 lg:px-10 xl:px-14">
+      <div className="flex-1 min-h-0 relative mx-auto flex w-full max-w-[1500px] flex-col lg:flex-row gap-12 lg:gap-10 p-0 lg:px-5 lg:pt-28 lg:pb-6 sm:p-0 lg:p-10 xl:px-14">
         
         {/* Floating Sidebar (Table of Contents) wrapper */}
         {!isMaximized && (
-        <div className="w-full lg:w-[320px] xl:w-[340px] flex-shrink-0 h-full relative flex flex-col">
+        <div className="hidden lg:flex lg:w-[320px] xl:w-[340px] flex-shrink-0 h-full relative flex-col">
           
           <div className="relative flex-1 min-h-0 w-full rounded-[24px] border-[3px] border-ink shadow-[5px_6px_0_#17191f] bg-[#fffdf8] overflow-hidden flex flex-col">
             <aside 
@@ -169,90 +302,7 @@ export function Journey() {
               className="w-full h-full flex flex-col overflow-y-auto p-6 hide-scrollbar"
               style={{ overflowAnchor: 'none' }}
             >
-              <nav className="space-y-6 pt-4">
-                {journeyData.map((chapter) => {
-                  const totalTopics = chapter.topics.length;
-                  const learnedCount = chapter.topics.filter(t => learnedTopics.has(t.id)).length;
-                  const progress = totalTopics > 0 ? (learnedCount / totalTopics) * 100 : 0;
-                  
-                  const isExpanded = !collapsedChapters.has(chapter.chapter);
-                  
-                  return (
-                    <div key={chapter.chapter}>
-                      <div className="flex items-center justify-between px-2 mb-2 group cursor-pointer" onClick={() => toggleChapter(chapter.chapter)}>
-                        <h3 className="font-display text-[12px] uppercase tracking-widest font-bold">
-                          <span
-                            className="bg-clip-text text-transparent inline-block"
-                            style={{
-                              backgroundImage: `linear-gradient(to right, #6654f5 50%, rgba(23, 25, 31, 0.4) 50%)`,
-                              backgroundSize: "200% 100%",
-                              backgroundPosition: `${100 - progress}% 0`,
-                              transition: "background-position 1s cubic-bezier(0.22, 1, 0.36, 1)"
-                            }}
-                          >
-                            {chapter.chapter}
-                          </span>
-                        </h3>
-                        <div className="flex items-center gap-2">
-                          <Tooltip text={pinnedChapters.has(chapter.chapter) ? "unpin chapter" : "pin chapter"}>
-                            <button 
-                              onClick={(e) => togglePin(e, chapter.chapter)}
-                              className={`p-1.5 rounded-md transition-all ${pinnedChapters.has(chapter.chapter) ? 'text-[#ec5faa] bg-[#ec5faa]/10 opacity-100' : 'text-ink/20 hover:text-ink/50 opacity-0 group-hover:opacity-100'}`}
-                            >
-                              <svg width="16" height="16" viewBox="0 0 24 24" fill={pinnedChapters.has(chapter.chapter) ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-300 ${pinnedChapters.has(chapter.chapter) ? "rotate-12 scale-110" : "hover:-rotate-12"} ${wigglingPin === chapter.chapter ? "animate-pin-wiggle" : ""}`}>
-                                <line x1="12" y1="17" x2="12" y2="22"></line>
-                                <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"></path>
-                              </svg>
-                            </button>
-                          </Tooltip>
-                          <button className="text-ink/40 group-hover:text-ink transition-colors">
-                            <svg 
-                              className={`w-4 h-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isExpanded ? "-rotate-90" : "rotate-0"}`} 
-                              viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"
-                            >
-                              <path d="M6 9l6 6 6-6"/>
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                      <div 
-                        className="grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
-                        style={{ gridTemplateRows: !isExpanded ? "0fr" : "1fr" }}
-                      >
-                        <div className="overflow-hidden -mx-2 px-2">
-                          <ul className="space-y-1.5 pb-2">
-                      {chapter.topics.map((topicObj) => {
-                        const isActive = activeTopic === topicObj.id;
-                        const isLearned = learnedTopics.has(topicObj.id);
-                        return (
-                          <li key={topicObj.id}>
-                            <button
-                              onClick={() => setActiveTopic(topicObj.id)}
-                              className={`w-full text-left px-3 py-2 rounded-xl text-[14px] font-semibold transition-all flex items-center justify-between gap-2 ${
-                                isActive
-                                  ? "bg-sunshine border-2 border-ink shadow-[2px_2px_0_#17191f] text-ink translate-x-1"
-                                  : "text-ink/75 hover:bg-black/5 hover:text-ink border-2 border-transparent"
-                              }`}
-                            >
-                              <div className="flex items-center gap-2">
-                                <span className={isActive ? "" : "ml-4"}>{topicObj.title}</span>
-                              </div>
-                              {isLearned && (
-                                <svg className="w-4 h-4 shrink-0 text-[#237957] opacity-80 rotate-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                                  <path d="M20 6L9 17l-5-5"/>
-                                </svg>
-                              )}
-                            </button>
-                          </li>
-                        );
-                      })}
-                          </ul>
-                        </div>
-                      </div>
-                  </div>
-                  );
-                })}
-              </nav>
+              {sidebarNav}
             </aside>
 
             {/* Chalk Horizontal Scroll Progress Bar */}
@@ -271,7 +321,7 @@ export function Journey() {
           <div className="relative flex-1 w-full h-full flex flex-col min-h-0">
             {/* Top Border Badge */}
             {activeChapterObj && (
-              <div className="absolute -top-5 left-8 lg:left-12 z-20 px-5 py-2 bg-violetPop text-white border-[3px] border-ink font-display font-bold text-sm uppercase tracking-widest shadow-[3px_4px_0_#17191f] rotate-[-2deg]">
+              <div className="hidden lg:block absolute -top-5 left-8 lg:left-12 z-20 px-5 py-2 bg-violetPop text-white border-[3px] border-ink font-display font-bold text-sm uppercase tracking-widest shadow-[3px_4px_0_#17191f] rotate-[-2deg]">
                 {activeChapterObj.chapter}
               </div>
             )}
@@ -279,11 +329,11 @@ export function Journey() {
             {/* Maximize Button */}
             <Tooltip 
               text={isMaximized ? "unfocus" : "focus"} 
-              className="absolute -top-4 -right-4 lg:-top-5 lg:-right-5 z-[99999]"
+              className="hidden lg:block absolute -top-4 -right-4 lg:-top-5 lg:-right-5 z-[99999]"
             >
               <button
                 onClick={() => setIsMaximized(!isMaximized)}
-                className="p-2.5 rounded-xl bg-white border-[3px] border-ink shadow-[4px_4px_0_#17191f] text-ink hover:bg-sunshine transition-all flex items-center justify-center hover:-translate-y-1 hover:translate-x-1"
+                className="hidden lg:flex p-2.5 rounded-xl bg-white border-[3px] border-ink shadow-[4px_4px_0_#17191f] text-ink hover:bg-sunshine transition-all items-center justify-center hover:-translate-y-1 hover:translate-x-1"
                 aria-label={isMaximized ? "Restore view" : "Maximize view"}
               >
                 {isMaximized ? (
@@ -298,40 +348,57 @@ export function Journey() {
               </button>
             </Tooltip>
 
-            <main className="flex-1 w-full h-full bg-[#fffdf8] rounded-[26px] border-[3px] border-ink shadow-[8px_10px_0_#17191f] flex flex-col relative rotate-[0.2deg] overflow-hidden transition-all duration-300">
+            <main className="flex-1 w-full h-full bg-[#fffdf8] lg:rounded-[26px] lg:border-[3px] lg:border-ink lg:shadow-[8px_10px_0_#17191f] flex flex-col relative lg:rotate-[0.2deg] overflow-hidden transition-all duration-300">
           
           {/* subtle paper texture / header decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_top_right,rgba(102,85,242,0.12),transparent_70%)] pointer-events-none" />
 
           {/* Content Header */}
           <div 
-            className="px-8 lg:px-10 border-b-2 border-ink/10 relative flex-shrink-0"
+            className="px-5 lg:px-10 border-b-2 border-ink/10 relative flex-shrink-0 pt-2 pb-2 lg:pt-[var(--header-pt)] lg:pb-[var(--header-pb)]"
             style={{ 
-              paddingTop: `${32 - (24 * contentScrollProgress)}px`, 
-              paddingBottom: `${24 - (16 * contentScrollProgress)}px`,
+              "--header-pt": `${32 - (24 * contentScrollProgress)}px`, 
+              "--header-pb": `${24 - (16 * contentScrollProgress)}px`,
+              "--title-fs": `${36 - (16 * contentScrollProgress)}px`,
+              "--title-mt": `${8 - (8 * contentScrollProgress)}px`,
+              "--icon-sz": `${40 - (16 * contentScrollProgress)}px`
             }}
           >
 
             {activeChapterObj && (
               <div className="relative z-10 flex flex-col">
-                <div className="flex items-center w-full">
-                  <div style={{ flexGrow: contentScrollProgress }} />
-                  <h1 
-                    className="font-display font-bold tracking-tight text-ink flex items-center flex-wrap gap-x-3"
+                {/* Mobile Chapter Badge */}
+                <div className="lg:hidden text-[11px] font-display font-bold uppercase tracking-widest mb-1.5 flex items-center">
+                  <span
+                    className="bg-clip-text text-transparent inline-block"
                     style={{
-                      fontSize: `${36 - (16 * contentScrollProgress)}px`,
-                      lineHeight: 1.2,
-                      marginTop: `${8 - (8 * contentScrollProgress)}px`
+                      backgroundImage: `linear-gradient(to right, #6654f5 50%, rgba(23, 25, 31, 0.4) 50%)`,
+                      backgroundSize: "200% 100%",
+                      backgroundPosition: `${100 - activeChapterProgress}% 0`,
+                      transition: "background-position 1s cubic-bezier(0.22, 1, 0.36, 1)"
                     }}
+                  >
+                    {activeChapterObj.chapter}
+                  </span>
+                </div>
+
+                <div className="flex items-center w-full justify-between">
+                  <button
+                    onClick={() => setIsMobileDrawerOpen(true)}
+                    className="lg:hidden w-10 h-10 shrink-0 rounded-xl bg-sunshine border-[2px] border-ink shadow-[2px_2px_0_#17191f] flex items-center justify-center text-ink active:translate-y-1 active:shadow-none transition-all"
+                  >
+                    <Menu className="w-5 h-5" strokeWidth={2.5} />
+                  </button>
+
+                  <div style={{ flexGrow: contentScrollProgress }} className="hidden lg:block" />
+
+                  <h1 
+                    className="font-display font-bold tracking-tight text-ink flex items-center justify-center lg:justify-start flex-wrap gap-x-3 flex-1 lg:flex-none text-center lg:text-left text-[20px] mt-0 lg:text-[length:var(--title-fs)] lg:mt-[var(--title-mt)] leading-[1.2]"
                   >
                     <span>{activeTopicObj?.title}</span>
                     {/* Playful chalk rays decoration */}
                     <svg 
-                      className="inline-block" 
-                      style={{ 
-                        width: `${40 - (16 * contentScrollProgress)}px`, 
-                        height: `${40 - (16 * contentScrollProgress)}px` 
-                      }} 
+                      className="inline-block w-[24px] h-[24px] lg:w-[var(--icon-sz)] lg:h-[var(--icon-sz)]" 
                       viewBox="0 0 112 112" aria-hidden="true"
                     >
                       <path d="M52 14 L36 42" fill="none" stroke="#ffda45" strokeWidth="9" strokeLinecap="round" />
@@ -342,7 +409,9 @@ export function Journey() {
                       <path d="M62 67 L91 72" fill="none" stroke="#fff0a6" strokeWidth="4" strokeLinecap="round" strokeOpacity="0.65" />
                     </svg>
                   </h1>
-                  <div style={{ flexGrow: 1 }} />
+
+                  <div style={{ flexGrow: 1 }} className="hidden lg:block" />
+                  <div className="lg:hidden w-10 h-10 shrink-0 pointer-events-none" /> {/* Spacer to perfectly center the title */}
                 </div>
               </div>
             )}
@@ -352,7 +421,7 @@ export function Journey() {
           <div 
             ref={contentRef}
             onScroll={handleContentScroll}
-            className="flex-1 p-8 lg:p-10 bg-white/50 overflow-y-auto hide-scrollbar flex flex-col"
+            className="flex-1 p-5 lg:p-10 bg-white/50 overflow-y-auto hide-scrollbar flex flex-col"
           >
             
             {activeTopic === "what-is-ai" ? (
