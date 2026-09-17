@@ -102,7 +102,7 @@ export function Home() {
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,217,56,0.16),transparent_24%),radial-gradient(circle_at_74%_70%,rgba(102,85,242,0.12),transparent_27%)]" />
       <DiscoveryNote className="absolute bottom-[126px] right-5 z-20 hidden w-[310px] rotate-[-2deg] xl:block" />
       
-      <div className="absolute inset-x-0 bottom-0 top-[90px] overflow-y-auto overflow-x-hidden">
+      <div className="absolute inset-x-0 bottom-0 top-[84px] overflow-y-auto overflow-x-hidden">
         <section className="page-shell relative mx-auto flex min-h-full w-full max-w-[1500px] flex-col px-5 pt-8 pb-4 sm:px-8 lg:px-10 xl:px-14">
         <div className="hero-grid grid flex-1 items-center gap-6 pt-9 lg:grid-cols-[0.82fr_1.18fr] lg:pt-5 xl:gap-8">
           <div className="z-10 order-2 lg:order-1">
