@@ -5,10 +5,10 @@ export function Logo({ className = "" }) {
   const circleRef = React.useRef(null);
 
   React.useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMove = (clientX, clientY) => {
       if (!circleRef.current) return;
-      const x = (e.clientX / window.innerWidth) - 0.5;
-      const y = (e.clientY / window.innerHeight) - 0.5;
+      const x = (clientX / window.innerWidth) - 0.5;
+      const y = (clientY / window.innerHeight) - 0.5;
       
       const rot = -9 + (x * 24); 
       const tx = x * 8;
@@ -16,8 +16,21 @@ export function Logo({ className = "" }) {
       
       circleRef.current.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg)`;
     };
+
+    const handleMouseMove = (e) => handleMove(e.clientX, e.clientY);
+    const handleTouchMove = (e) => {
+      if (e.touches.length > 0) {
+        handleMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
+    };
   }, []);
 
   return (
