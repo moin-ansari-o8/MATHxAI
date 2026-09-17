@@ -221,7 +221,7 @@ export function Home() {
 
         <section className="relative z-10 mt-10 md:mt-2">
           <div
-            className="overflow-hidden -mx-5 px-5 py-10 -my-10 md:overflow-visible md:mx-0 md:px-0 md:py-0 md:-my-0"
+            className="overflow-hidden -mx-5 px-5 pt-2 pb-5 -mt-2 -mb-5 md:overflow-visible md:mx-0 md:px-0 md:py-0 md:-my-0"
             ref={emblaRef}
           >
             <div className="flex max-md:-ml-4 md:grid md:grid-cols-2 md:gap-4 xl:grid-cols-4">
