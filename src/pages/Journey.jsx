@@ -350,7 +350,7 @@ export function Journey() {
 
           {/* Content Header */}
           <div 
-            className="px-5 lg:px-10 border-b-2 border-ink/10 relative flex-shrink-0 pt-2 pb-2 lg:pt-[var(--header-pt)] lg:pb-[var(--header-pb)]"
+            className="bg-[#fffdf8] z-20 px-5 lg:px-10 border-b-2 border-ink/10 relative flex-shrink-0 pt-2 pb-2 lg:pt-[var(--header-pt)] lg:pb-[var(--header-pb)]"
             style={{ 
               "--header-pt": `${32 - (24 * contentScrollProgress)}px`, 
               "--header-pb": `${24 - (16 * contentScrollProgress)}px`,
