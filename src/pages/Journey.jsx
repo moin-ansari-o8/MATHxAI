@@ -4,6 +4,9 @@ import Tooltip from "../components/Tooltip";
 import { WhatIsAI } from "../components/journey/WhatIsAI";
 import { WhatIsML } from "../components/journey/WhatIsML";
 import { HowDoesAILearn } from "../components/journey/HowDoesAILearn";
+import { DataRepresentation } from "../components/journey/DataRepresentation";
+import { NumbersFeaturesPatterns } from "../components/journey/NumbersFeaturesPatterns";
+import { VectorsTensors } from "../components/journey/VectorsTensors";
 import { MobileDrawer } from "../components/MobileDrawer";
 import { Menu } from "lucide-react";
 import { Decorations } from "../components/Decorations";
@@ -425,6 +428,12 @@ export function Journey() {
               <WhatIsML />
             ) : activeTopic === "how-does-ai-learn" ? (
               <HowDoesAILearn />
+            ) : activeTopic === "data-representation" ? (
+              <DataRepresentation />
+            ) : activeTopic === "numbers-features-patterns" ? (
+              <NumbersFeaturesPatterns />
+            ) : activeTopic === "vectors-tensors-foundations" ? (
+              <VectorsTensors />
             ) : (
               <div className="max-w-3xl">
                 <p className="text-lg font-medium leading-relaxed mb-10">
