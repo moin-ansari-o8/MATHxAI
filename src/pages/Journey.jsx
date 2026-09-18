@@ -15,6 +15,68 @@ import { Matrices } from "../components/journey/Matrices";
 import { Vectors } from "../components/journey/Vectors";
 import { DotProducts } from "../components/journey/DotProducts";
 import { TinyBitGeometry } from "../components/journey/TinyBitGeometry";
+import { ModelBlackBox } from "../components/journey/ModelBlackBox";
+import { LinearRegression } from "../components/journey/LinearRegression";
+import { Weights } from "../components/journey/Weights";
+import { Bias } from "../components/journey/Bias";
+import { PredictionEquation } from "../components/journey/PredictionEquation";
+import { Neurons } from "../components/journey/Neurons";
+import { ActivationFunctions } from "../components/journey/ActivationFunctions";
+import { ProbabilityConfidence } from "../components/journey/ProbabilityConfidence";
+import { AIGetsItWrong } from "../components/journey/AIGetsItWrong";
+import { PredictionVsReality } from "../components/journey/PredictionVsReality";
+import { Loss } from "../components/journey/Loss";
+import { LossFunctions } from "../components/journey/LossFunctions";
+import { MeanSquaredError } from "../components/journey/MeanSquaredError";
+import { CrossEntropy } from "../components/journey/CrossEntropy";
+import { WhyAINeedsScore } from "../components/journey/WhyAINeedsScore";
+import { Functions } from "../components/journey/Functions";
+import { Change } from "../components/journey/Change";
+import { Slope } from "../components/journey/Slope";
+import { Derivatives } from "../components/journey/Derivatives";
+import { PartialDerivatives } from "../components/journey/PartialDerivatives";
+import { Gradients } from "../components/journey/Gradients";
+import { GradientDescent } from "../components/journey/GradientDescent";
+import { Optimization } from "../components/journey/Optimization";
+import { LearningLoop } from "../components/journey/LearningLoop";
+import { ForwardPass } from "../components/journey/ForwardPass";
+import { ErrorCalculation } from "../components/journey/ErrorCalculation";
+import { Backpropagation } from "../components/journey/Backpropagation";
+import { LearningRateNetwork } from "../components/journey/LearningRateNetwork";
+import { OptimizationAlgorithms } from "../components/journey/OptimizationAlgorithms";
+import { PuttingItTogether } from "../components/journey/PuttingItTogether";
+import { TrainingData } from "../components/journey/TrainingData";
+import { TestData } from "../components/journey/TestData";
+import { Validation } from "../components/journey/Validation";
+import { Overfitting } from "../components/journey/Overfitting";
+import { Underfitting } from "../components/journey/Underfitting";
+import { BiasAndVariance } from "../components/journey/BiasAndVariance";
+import { StatisticsBehindLearning } from "../components/journey/StatisticsBehindLearning";
+import { Generalization } from "../components/journey/Generalization";
+import { GeometryOfData } from "../components/journey/GeometryOfData";
+import { Similarity } from "../components/journey/Similarity";
+import { DistanceExplorer } from "../components/journey/DistanceExplorer";
+import { VectorsAsMeaning } from "../components/journey/VectorsAsMeaning";
+import { EmbeddingsExplorer } from "../components/journey/EmbeddingsExplorer";
+import { WordEmbeddings } from "../components/journey/WordEmbeddings";
+import { SemanticSpace } from "../components/journey/SemanticSpace";
+import { WhySimilarClose } from "../components/journey/WhySimilarClose";
+import { InformationContext } from "../components/journey/InformationContext";
+import { AttentionSimilarity } from "../components/journey/AttentionSimilarity";
+import { QKVExplorer } from "../components/journey/QKVExplorer";
+import { AttentionMixer } from "../components/journey/AttentionMixer";
+import { SelfAttentionMatrix } from "../components/journey/SelfAttentionMatrix";
+import { InformationFlow } from "../components/journey/InformationFlow";
+import { TransformerArchitecture } from "../components/journey/TransformerArchitecture";
+import { WhyAttentionChangedAI } from "../components/journey/WhyAttentionChangedAI";
+import { FullLearningLoop } from "../components/journey/FullLearningLoop";
+import { TrainNeuralNetwork } from "../components/journey/TrainNeuralNetwork";
+import { NextTokenPredictor } from "../components/journey/NextTokenPredictor";
+import { LLMScaleDashboard } from "../components/journey/LLMScaleDashboard";
+import { TokenToPrediction } from "../components/journey/TokenToPrediction";
+import { TrainingAnLLM } from "../components/journey/TrainingAnLLM";
+import { SynthesisMap } from "../components/journey/SynthesisMap";
+import { MiniAITrainer } from "../components/journey/MiniAITrainer";
 import { MobileDrawer } from "../components/MobileDrawer";
 import { Menu } from "lucide-react";
 import { Decorations } from "../components/Decorations";
@@ -458,6 +520,130 @@ export function Journey() {
               <DotProducts />
             ) : activeTopic === "tiny-bit-geometry" ? (
               <TinyBitGeometry />
+            ) : activeTopic === "what-model-does" ? (
+              <ModelBlackBox />
+            ) : activeTopic === "linear-regression" ? (
+              <LinearRegression />
+            ) : activeTopic === "weights" ? (
+              <Weights />
+            ) : activeTopic === "bias" ? (
+              <Bias />
+            ) : activeTopic === "prediction-equation" ? (
+              <PredictionEquation />
+            ) : activeTopic === "neurons" ? (
+              <Neurons />
+            ) : activeTopic === "activation-functions" ? (
+              <ActivationFunctions />
+            ) : activeTopic === "probability-confidence" ? (
+              <ProbabilityConfidence />
+            ) : activeTopic === "ai-gets-it-wrong" ? (
+              <AIGetsItWrong />
+            ) : activeTopic === "prediction-vs-reality" ? (
+              <PredictionVsReality />
+            ) : activeTopic === "loss" ? (
+              <Loss />
+            ) : activeTopic === "loss-functions" ? (
+              <LossFunctions />
+            ) : activeTopic === "mean-squared-error" ? (
+              <MeanSquaredError />
+            ) : activeTopic === "cross-entropy" ? (
+              <CrossEntropy />
+            ) : activeTopic === "why-ai-needs-score" ? (
+              <WhyAINeedsScore />
+            ) : activeTopic === "functions" ? (
+              <Functions />
+            ) : activeTopic === "change" ? (
+              <Change />
+            ) : activeTopic === "slope" ? (
+              <Slope />
+            ) : activeTopic === "derivatives" ? (
+              <Derivatives />
+            ) : activeTopic === "partial-derivatives" ? (
+              <PartialDerivatives />
+            ) : activeTopic === "gradients" ? (
+              <Gradients />
+            ) : activeTopic === "gradient-descent" ? (
+              <GradientDescent />
+            ) : activeTopic === "optimization" ? (
+              <Optimization />
+            ) : activeTopic === "learning-loop" ? (
+              <LearningLoop />
+            ) : activeTopic === "forward-pass" ? (
+              <ForwardPass />
+            ) : activeTopic === "error-calculation" ? (
+              <ErrorCalculation />
+            ) : activeTopic === "backpropagation" ? (
+              <Backpropagation />
+            ) : activeTopic === "learning-rate" ? (
+              <LearningRateNetwork />
+            ) : activeTopic === "optimization-algorithms" ? (
+              <OptimizationAlgorithms />
+            ) : activeTopic === "putting-it-together" ? (
+              <PuttingItTogether />
+            ) : activeTopic === "training-data" ? (
+              <TrainingData />
+            ) : activeTopic === "test-data" ? (
+              <TestData />
+            ) : activeTopic === "validation" ? (
+              <Validation />
+            ) : activeTopic === "overfitting" ? (
+              <Overfitting />
+            ) : activeTopic === "underfitting" ? (
+              <Underfitting />
+            ) : activeTopic === "bias-variance" ? (
+              <BiasAndVariance />
+            ) : activeTopic === "statistics-learning" ? (
+              <StatisticsBehindLearning />
+            ) : activeTopic === "generalization" ? (
+              <Generalization />
+            ) : activeTopic === "geometry-data" ? (
+              <GeometryOfData />
+            ) : activeTopic === "similarity" ? (
+              <Similarity />
+            ) : activeTopic === "distance" ? (
+              <DistanceExplorer />
+            ) : activeTopic === "vectors-meaning" ? (
+              <VectorsAsMeaning />
+            ) : activeTopic === "embeddings" ? (
+              <EmbeddingsExplorer />
+            ) : activeTopic === "word-embeddings" ? (
+              <WordEmbeddings />
+            ) : activeTopic === "semantic-space" ? (
+              <SemanticSpace />
+            ) : activeTopic === "why-similar-close" ? (
+              <WhySimilarClose />
+            ) : activeTopic === "information" ? (
+              <InformationContext />
+            ) : activeTopic === "attention-similarity" ? (
+              <AttentionSimilarity />
+            ) : activeTopic === "qkv" ? (
+              <QKVExplorer />
+            ) : activeTopic === "attention" ? (
+              <AttentionMixer />
+            ) : activeTopic === "self-attention" ? (
+              <SelfAttentionMatrix />
+            ) : activeTopic === "information-flow" ? (
+              <InformationFlow />
+            ) : activeTopic === "transformers" ? (
+              <TransformerArchitecture />
+            ) : activeTopic === "why-attention-changed" ? (
+              <WhyAttentionChangedAI />
+            ) : activeTopic === "full-learning-loop" ? (
+              <FullLearningLoop />
+            ) : activeTopic === "training-nn" ? (
+              <TrainNeuralNetwork />
+            ) : activeTopic === "language-models" ? (
+              <NextTokenPredictor />
+            ) : activeTopic === "llms" ? (
+              <LLMScaleDashboard />
+            ) : activeTopic === "token-embedding-attention" ? (
+              <TokenToPrediction />
+            ) : activeTopic === "training-llm" ? (
+              <TrainingAnLLM />
+            ) : activeTopic === "synthesis" ? (
+              <SynthesisMap />
+            ) : activeTopic === "mini-ai-trainer" ? (
+              <MiniAITrainer />
             ) : (
               <div className="max-w-3xl">
                 <p className="text-lg font-medium leading-relaxed mb-10">
