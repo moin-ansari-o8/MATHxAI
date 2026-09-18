@@ -81,10 +81,10 @@ export function ImagesToMatrices() {
           Pixel Explorer
         </h2>
         
-        <div className="grid md:grid-cols-[1fr_250px] gap-6 mb-8">
+        <div className="grid lg:grid-cols-[1fr_250px] gap-6 mb-8">
           <div className="p-5 rounded-xl border-2 border-ink bg-white shadow-[4px_5px_0_#17191f] flex flex-col items-center">
             
-            <div className="flex gap-2 mb-6 bg-paper p-1.5 rounded-lg border-2 border-ink/10">
+            <div className="flex flex-wrap justify-center gap-2 mb-6 bg-paper p-1.5 rounded-lg border-2 border-ink/10">
               <button 
                 onClick={() => setViewMode('image')} 
                 className={`flex items-center gap-2 px-4 py-2 rounded-md font-bold transition-all ${viewMode === 'image' ? 'bg-white shadow-[2px_2px_0_#17191f] border-2 border-ink' : 'text-ink/60 hover:text-ink border-2 border-transparent'}`}
@@ -213,7 +213,7 @@ export function ImagesToMatrices() {
           <h2 className="font-display text-2xl font-bold mb-6">How this connects to real AI</h2>
           
           <div className="bg-white/80 border-2 border-ink p-6 rounded-xl shadow-[4px_4px_0_#17191f] mb-6 font-mono font-bold text-sm sm:text-base overflow-x-auto">
-            <div className="flex items-center gap-3 min-w-max">
+            <div className="flex flex-wrap items-center gap-3">
               <span>Photo</span> <ArrowRight size={16} /> 
               <span className="text-[#4185d9]">Pixels</span> <ArrowRight size={16} />
               <span className="text-[#6654f5]">Matrix / Tensor</span> <ArrowRight size={16} />

@@ -14,32 +14,26 @@ export function AudioToNumbers() {
   const [frequency, setFrequency] = useState(50);
   const [amplitude, setAmplitude] = useState(50);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [samples, setSamples] = useState([]);
 
-  // Generate a mock waveform path based on frequency and amplitude
-  const generateWaveform = () => {
-    const freq = frequency / 10;
-    const amp = amplitude / 2;
-    let path = 'M 0 50 ';
-    let newSamples = [];
+  // Derive waveform and samples directly from state
+  const freq = frequency / 10;
+  const amp = amplitude / 2;
+  let path = 'M 0 50 ';
+  let samples = [];
+  
+  for (let i = 0; i <= 100; i++) {
+    // Sine wave calculation
+    const x = i;
+    const y = 50 + Math.sin((i * freq * Math.PI) / 50) * amp;
+    path += `L ${x} ${y} `;
     
-    for (let i = 0; i <= 100; i++) {
-      // Sine wave calculation
-      const x = i;
-      const y = 50 + Math.sin((i * freq * Math.PI) / 50) * amp;
-      path += `L ${x} ${y} `;
-      
-      // Store a few sample points for the numerical view
-      if (i % 10 === 0 && newSamples.length < 7) {
-        // Normalize between -1 and 1
-        const normalized = -Math.sin((i * freq * Math.PI) / 50) * (amplitude / 100);
-        newSamples.push(normalized.toFixed(1));
-      }
+    // Store a few sample points for the numerical view
+    if (i % 10 === 0 && samples.length < 7) {
+      // Normalize between -1 and 1
+      const normalized = -Math.sin((i * freq * Math.PI) / 50) * (amplitude / 100);
+      samples.push(normalized.toFixed(1));
     }
-    
-    setSamples(newSamples);
-    return path;
-  };
+  }
 
   return (
     <div className="space-y-16 max-w-4xl mx-auto pb-8">
@@ -79,7 +73,7 @@ export function AudioToNumbers() {
             
             <svg viewBox="0 0 100 100" className="w-full h-full relative z-10 preserve-aspect-ratio-none">
               <path 
-                d={generateWaveform()} 
+                d={path} 
                 fill="none" 
                 stroke="#6654f5" 
                 strokeWidth="2" 
@@ -96,7 +90,7 @@ export function AudioToNumbers() {
             )}
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-6">
+          <div className="grid lg:grid-cols-2 gap-8 mb-6">
             <div className="space-y-6">
               <div>
                 <div className="flex justify-between font-bold mb-2">
@@ -151,7 +145,7 @@ export function AudioToNumbers() {
           <h2 className="font-display text-2xl font-bold mb-6">How this connects to real AI</h2>
           
           <div className="bg-white/80 border-2 border-ink p-6 rounded-xl shadow-[4px_4px_0_#17191f] mb-6 font-mono font-bold text-sm sm:text-base overflow-x-auto">
-            <div className="flex items-center gap-3 min-w-max">
+            <div className="flex flex-wrap items-center gap-3">
               <span>Speech</span> <ArrowRight size={16} /> 
               <span className="text-[#4185d9]">Audio waveform</span> <ArrowRight size={16} />
               <span className="text-[#237957]">Numerical representation</span> <ArrowRight size={16} />

@@ -89,7 +89,7 @@ export function Matrices() {
           Matrix Playground
         </h2>
         
-        <div className="p-4 sm:p-6 lg:p-8 rounded-[20px] border-[3px] border-ink bg-white shadow-[6px_8px_0_#17191f] mb-8 grid md:grid-cols-[1fr_250px] gap-8">
+        <div className="p-4 sm:p-6 lg:p-8 rounded-[20px] border-[3px] border-ink bg-white shadow-[6px_8px_0_#17191f] mb-8 grid lg:grid-cols-[1fr_250px] gap-8">
           
           <div className="flex justify-center items-center py-8">
             {renderMatrix(matrixA, "Matrix A")}
@@ -119,7 +119,7 @@ export function Matrices() {
         <div className="p-8 rounded-[20px] border-[3px] border-ink bg-[#fff4d9] shadow-[6px_8px_0_#17191f]">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
             <h3 className="font-display font-bold text-2xl">Matrix Operations</h3>
-            <div className="flex gap-2 bg-white p-1.5 rounded-lg border-2 border-ink">
+            <div className="flex flex-wrap justify-center gap-2 bg-white p-1.5 rounded-lg border-2 border-ink">
               <button onClick={() => setOperation('add')} className={`px-3 py-1.5 rounded-md font-bold transition-all flex items-center gap-1 ${operation === 'add' ? 'bg-[#ffda45] border-2 border-ink shadow-[2px_2px_0_#17191f]' : 'text-ink/60 border-2 border-transparent hover:text-ink'}`}><Plus size={16}/> A + B</button>
               <button onClick={() => setOperation('multiply')} className={`px-3 py-1.5 rounded-md font-bold transition-all flex items-center gap-1 ${operation === 'multiply' ? 'bg-[#ffda45] border-2 border-ink shadow-[2px_2px_0_#17191f]' : 'text-ink/60 border-2 border-transparent hover:text-ink'}`}><MultiplyIcon size={16}/> A × k</button>
               <button onClick={() => setOperation('transpose')} className={`px-3 py-1.5 rounded-md font-bold transition-all flex items-center gap-1 ${operation === 'transpose' ? 'bg-[#ffda45] border-2 border-ink shadow-[2px_2px_0_#17191f]' : 'text-ink/60 border-2 border-transparent hover:text-ink'}`}><ArrowRightLeft size={16}/> A^T</button>
@@ -185,7 +185,7 @@ export function Matrices() {
           <h2 className="font-display text-2xl font-bold mb-6">How this connects to real AI</h2>
           
           <div className="bg-white/80 border-2 border-ink p-6 rounded-xl shadow-[4px_4px_0_#17191f] mb-6 font-mono font-bold text-sm sm:text-base overflow-x-auto">
-            <div className="flex flex-col sm:flex-row items-center gap-3 min-w-max justify-center">
+            <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
               <span className="bg-[#dcecff] border-2 border-ink px-3 py-1 rounded">Input matrix</span> 
               <MultiplyIcon size={16} /> 
               <span className="bg-[#fff4d9] border-2 border-ink px-3 py-1 rounded">Weight matrix</span>

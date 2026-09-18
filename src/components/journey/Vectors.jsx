@@ -106,7 +106,7 @@ export function Vectors() {
           Vector Space
         </h2>
         
-        <div className="p-4 sm:p-6 lg:p-8 rounded-[20px] border-[3px] border-ink bg-[#dff4e8] shadow-[6px_8px_0_#17191f] mb-8 grid md:grid-cols-[1fr_250px] gap-8">
+        <div className="p-4 sm:p-6 lg:p-8 rounded-[20px] border-[3px] border-ink bg-[#dff4e8] shadow-[6px_8px_0_#17191f] mb-8 grid lg:grid-cols-[1fr_250px] gap-8">
           
           <div className="flex flex-col items-center">
             <div className="relative w-full max-w-[400px] aspect-square bg-white border-l-[4px] border-b-[4px] border-t border-r border-ink shadow-[-4px_4px_0_#17191f] rounded-bl-lg">
@@ -174,7 +174,7 @@ export function Vectors() {
           <h3 className="font-display font-bold text-2xl mb-4">Adding Vectors</h3>
           <p className="font-medium mb-8 text-ink/80">Vector addition has a clear geometric intuition. Drag A and B below to see how they add up.</p>
           
-          <div className="grid md:grid-cols-[1fr_250px] gap-8">
+          <div className="grid lg:grid-cols-[1fr_250px] gap-8">
             <div className="flex justify-center">
                <div className="relative w-full max-w-[350px] aspect-square bg-white border-l-[4px] border-b-[4px] border-t border-r border-ink shadow-[-4px_4px_0_#17191f] rounded-bl-lg">
                 <svg 
@@ -245,7 +245,7 @@ export function Vectors() {
           <h2 className="font-display text-2xl font-bold mb-6">How this connects to real AI</h2>
           
           <div className="bg-white/80 border-2 border-ink p-6 rounded-xl shadow-[4px_4px_0_#17191f] mb-6 font-mono font-bold text-sm sm:text-base overflow-x-auto">
-            <div className="flex items-center gap-3 min-w-max">
+            <div className="flex flex-wrap items-center gap-3">
               <span>Object</span> <ArrowRight size={16} /> 
               <span className="text-[#4185d9]">Features</span> <ArrowRight size={16} />
               <span className="text-[#65c99a]">Vector</span> <ArrowRight size={16} />
@@ -254,7 +254,7 @@ export function Vectors() {
           </div>
 
           <div className="bg-white/80 border-2 border-ink p-6 rounded-xl shadow-[4px_4px_0_#17191f] mb-6 font-mono font-bold text-sm sm:text-base overflow-x-auto">
-            <div className="flex items-center gap-3 min-w-max">
+            <div className="flex flex-wrap items-center gap-3">
               <span>Word</span> <ArrowRight size={16} /> 
               <span className="bg-sunshine border-2 border-ink px-3 py-1 rounded">Embedding vector</span>
             </div>

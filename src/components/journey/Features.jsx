@@ -80,7 +80,7 @@ export function Features() {
           Build a Data Point
         </h2>
         
-        <div className="p-4 sm:p-6 lg:p-8 rounded-[20px] border-[3px] border-ink bg-[#fbe1eb] shadow-[6px_8px_0_#17191f] mb-8 grid md:grid-cols-2 gap-8">
+        <div className="p-4 sm:p-6 lg:p-8 rounded-[20px] border-[3px] border-ink bg-[#fbe1eb] shadow-[6px_8px_0_#17191f] mb-8 grid lg:grid-cols-2 gap-8">
           
           <div>
             <h3 className="font-display font-bold text-xl mb-4">Dog Classifier Features</h3>

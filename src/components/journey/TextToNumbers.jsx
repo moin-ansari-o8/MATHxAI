@@ -86,7 +86,7 @@ export function TextToNumbers() {
           
           <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <h3 className="font-bold text-xl">Type any sentence:</h3>
-            <div className="flex gap-2 bg-paper p-1.5 rounded-lg border-2 border-ink/10 text-sm">
+            <div className="flex flex-wrap justify-center gap-2 bg-paper p-1.5 rounded-lg border-2 border-ink/10 text-sm">
               <button 
                 onClick={() => setUseSubwords(false)} 
                 className={`px-3 py-1.5 rounded-md font-bold transition-all ${!useSubwords ? 'bg-white shadow-[2px_2px_0_#17191f] border-2 border-ink' : 'text-ink/60 hover:text-ink border-2 border-transparent'}`}
@@ -158,7 +158,7 @@ export function TextToNumbers() {
           <h2 className="font-display text-2xl font-bold mb-6">How this connects to real AI</h2>
           
           <div className="bg-white/80 border-2 border-ink p-6 rounded-xl shadow-[4px_4px_0_#17191f] mb-6 font-mono font-bold text-sm sm:text-base overflow-x-auto">
-            <div className="flex items-center gap-3 min-w-max">
+            <div className="flex flex-wrap items-center gap-3">
               <span>"How are you?"</span> <ArrowRight size={16} /> 
               <span className="text-[#d83f97]">Tokens</span> <ArrowRight size={16} />
               <span className="text-[#6654f5]">Numbers</span> <ArrowRight size={16} />

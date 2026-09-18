@@ -109,7 +109,7 @@ export function DotProducts() {
           Similarity Lab
         </h2>
         
-        <div className="p-4 sm:p-6 lg:p-8 rounded-[20px] border-[3px] border-ink bg-white shadow-[6px_8px_0_#17191f] mb-8 grid md:grid-cols-[1fr_250px] gap-8">
+        <div className="p-4 sm:p-6 lg:p-8 rounded-[20px] border-[3px] border-ink bg-white shadow-[6px_8px_0_#17191f] mb-8 grid lg:grid-cols-[1fr_250px] gap-8">
           
           <div className="flex justify-center flex-col items-center">
             <div className="relative w-full max-w-[400px] aspect-square bg-white border-2 border-ink shadow-[4px_4px_0_#17191f] rounded-lg overflow-hidden">
@@ -210,7 +210,7 @@ export function DotProducts() {
         <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#c9baff] text-ink shadow-[6px_8px_0_#17191f]">
           <h2 className="font-display text-2xl font-bold mb-6">How this connects to real AI</h2>
           
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <div className="grid lg:grid-cols-2 gap-6 mb-8">
             <div className="bg-white border-2 border-ink p-5 rounded-xl shadow-[4px_4px_0_#17191f]">
               <h3 className="font-bold text-lg mb-2 text-[#4185d9]">Search & Similarity</h3>
               <p className="font-medium text-ink/80">When you search for something, AI turns your search into a vector, and uses the dot product to find documents with similar meaning.</p>
