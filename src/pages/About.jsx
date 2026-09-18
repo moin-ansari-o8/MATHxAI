@@ -36,7 +36,7 @@ export function About() {
             </div>
 
             <div className="flex flex-col items-center gap-5">
-              <div className="rounded-3xl border-[3px] border-ink bg-[#fffdf8] p-5 shadow-[6px_8px_0_#17191f] rotate-[2deg] transition-transform hover:rotate-0 hover:scale-105">
+              <a href="https://github.com/moin-ansari-o8/MATHxAI" target="_blank" rel="noreferrer" className="block rounded-3xl border-[3px] border-ink bg-[#fffdf8] p-5 shadow-[6px_8px_0_#17191f] rotate-[2deg] transition-transform hover:rotate-0 hover:scale-105">
                 <QRCode
                   value="https://github.com/moin-ansari-o8/MATHxAI"
                   bgColor="#fffdf8"
@@ -46,7 +46,7 @@ export function About() {
                   eyeRadius={12}
                   eyeColor="#6654f5"
                 />
-              </div>
+              </a>
               <span className="font-display text-[16px] font-bold text-ink bg-sunshine px-5 py-2 rounded-full border-[3px] border-ink shadow-[3px_3px_0_#17191f] rotate-[-4deg] transition-transform hover:rotate-[4deg] cursor-default">
                 Scan/Click to contribute!
               </span>
