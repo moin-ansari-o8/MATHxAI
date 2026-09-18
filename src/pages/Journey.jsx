@@ -7,6 +7,14 @@ import { HowDoesAILearn } from "../components/journey/HowDoesAILearn";
 import { DataRepresentation } from "../components/journey/DataRepresentation";
 import { NumbersFeaturesPatterns } from "../components/journey/NumbersFeaturesPatterns";
 import { VectorsTensors } from "../components/journey/VectorsTensors";
+import { ImagesToMatrices } from "../components/journey/ImagesToMatrices";
+import { TextToNumbers } from "../components/journey/TextToNumbers";
+import { AudioToNumbers } from "../components/journey/AudioToNumbers";
+import { Features } from "../components/journey/Features";
+import { Matrices } from "../components/journey/Matrices";
+import { Vectors } from "../components/journey/Vectors";
+import { DotProducts } from "../components/journey/DotProducts";
+import { TinyBitGeometry } from "../components/journey/TinyBitGeometry";
 import { MobileDrawer } from "../components/MobileDrawer";
 import { Menu } from "lucide-react";
 import { Decorations } from "../components/Decorations";
@@ -434,6 +442,22 @@ export function Journey() {
               <NumbersFeaturesPatterns />
             ) : activeTopic === "vectors-tensors-foundations" ? (
               <VectorsTensors />
+            ) : activeTopic === "images-to-matrices" ? (
+              <ImagesToMatrices />
+            ) : activeTopic === "text-to-numbers" ? (
+              <TextToNumbers />
+            ) : activeTopic === "audio-to-numbers" ? (
+              <AudioToNumbers />
+            ) : activeTopic === "features" ? (
+              <Features />
+            ) : activeTopic === "matrices" ? (
+              <Matrices />
+            ) : activeTopic === "vectors" ? (
+              <Vectors />
+            ) : activeTopic === "dot-products" ? (
+              <DotProducts />
+            ) : activeTopic === "tiny-bit-geometry" ? (
+              <TinyBitGeometry />
             ) : (
               <div className="max-w-3xl">
                 <p className="text-lg font-medium leading-relaxed mb-10">

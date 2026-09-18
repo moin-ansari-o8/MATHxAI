@@ -1,5 +1,5 @@
 import React from "react";
-import QRCode from "react-qr-code";
+import { QRCode } from "react-qrcode-logo";
 import { Decorations } from "../components/Decorations";
 
 export function About() {
@@ -36,16 +36,19 @@ export function About() {
             </div>
 
             <div className="flex flex-col items-center gap-5">
-              <div className="rounded-3xl border-[3px] border-ink bg-white p-5 shadow-[6px_8px_0_#17191f] rotate-[2deg] transition-transform hover:rotate-0">
+              <div className="rounded-3xl border-[3px] border-ink bg-[#fffdf8] p-5 shadow-[6px_8px_0_#17191f] rotate-[2deg] transition-transform hover:rotate-0 hover:scale-105">
                 <QRCode
-                  value="https://mathh-x-ai.vercel.app"
-                  bgColor="#ffffff"
+                  value="https://github.com/moin-ansari-o8/MATHxAI"
+                  bgColor="#fffdf8"
                   fgColor="#17191f"
                   size={180}
+                  qrStyle="dots"
+                  eyeRadius={12}
+                  eyeColor="#6654f5"
                 />
               </div>
-              <span className="font-display text-[16px] font-bold text-ink bg-sunshine px-4 py-1.5 rounded-full border-[3px] border-ink shadow-[3px_3px_0_#17191f]">
-                Scan to visit
+              <span className="font-display text-[16px] font-bold text-ink bg-sunshine px-5 py-2 rounded-full border-[3px] border-ink shadow-[3px_3px_0_#17191f] rotate-[-4deg] transition-transform hover:rotate-[4deg] cursor-default">
+                Scan/Click to contribute!
               </span>
             </div>
           </div>
