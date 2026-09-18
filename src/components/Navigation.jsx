@@ -28,6 +28,7 @@ export function Navigation() {
           >
             Journey
           </Link>
+          {/* Hidden for now
           <Link 
             to="/math-library" 
             className={location.pathname === "/math-library" ? "rounded-full bg-sunshine px-5 py-1.5 shadow-[2px_3px_0_#17191f] border-2 border-ink" : ""}
@@ -35,7 +36,13 @@ export function Navigation() {
             Math Library
           </Link>
           <a href="#experiments">Experiments</a>
-          <Link to="/about">About</Link>
+          */}
+          <Link 
+            to="/about"
+            className={location.pathname === "/about" ? "rounded-full bg-sunshine px-5 py-1.5 shadow-[2px_3px_0_#17191f] border-2 border-ink" : ""}
+          >
+            About
+          </Link>
         </nav>
         <div className="hidden items-center gap-6 xl:flex">
           <label className="flex h-10 w-52 items-center gap-3 rounded-full border-2 border-ink bg-[#fffdf8] px-4 shadow-[2px_3px_0_#17191f]">
@@ -48,7 +55,14 @@ export function Navigation() {
         </div>
 
         {/* Mobile Menu Toggle & Dropdown */}
-        <div className="lg:hidden relative">
+        <div className="lg:hidden relative flex items-center gap-3">
+          <Link 
+            to="/about"
+            className="p-2 bg-[#fffdf8] rounded-xl border-[3px] border-ink shadow-[2px_3px_0_#17191f] hover:bg-sunshine transition-all flex items-center justify-center"
+            aria-label="About"
+          >
+            <span className="w-7 h-7 flex items-center justify-center text-ink text-2xl font-serif italic font-bold leading-none">i</span>
+          </Link>
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="p-2 bg-[#fffdf8] rounded-xl border-[3px] border-ink shadow-[2px_3px_0_#17191f] hover:bg-sunshine transition-all"
@@ -76,6 +90,7 @@ export function Navigation() {
                   >
                     Journey
                   </Link>
+                  {/* Hidden for now
                   <Link 
                     to="/math-library" 
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -84,6 +99,7 @@ export function Navigation() {
                     Math Library
                   </Link>
                   <a href="#experiments" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 w-full hover:bg-black/5 rounded-lg border-2 border-transparent">Experiments</a>
+                  */}
                   <Link 
                     to="/about" 
                     onClick={() => setIsMobileMenuOpen(false)}

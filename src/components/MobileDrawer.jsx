@@ -73,6 +73,7 @@ export function MobileDrawer({ isOpen, onClose, sidebarContent, pageTitle }) {
                     >
                       Journey
                     </Link>
+                    {/* Hidden for now
                     <Link 
                       to="/math-library" 
                       onClick={onClose}
@@ -81,6 +82,7 @@ export function MobileDrawer({ isOpen, onClose, sidebarContent, pageTitle }) {
                       Math Library
                     </Link>
                     <a href="#experiments" onClick={onClose} className="px-4 py-3 w-full hover:bg-black/5 rounded-lg border-2 border-transparent">Experiments</a>
+                    */}
                     <Link 
                       to="/about" 
                       onClick={onClose} 

@@ -7,17 +7,17 @@ export function About() {
     <main className="relative min-h-screen overflow-x-hidden bg-paper text-ink pt-32 pb-20">
       <Decorations />
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,217,56,0.16),transparent_24%),radial-gradient(circle_at_74%_70%,rgba(102,85,242,0.12),transparent_27%)]" />
-      
+
       <section className="relative z-10 mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-10 xl:px-14">
         <div className="mx-auto max-w-4xl rounded-3xl border-[3px] border-ink bg-[#fffdf8] p-8 shadow-[8px_10px_0_#17191f] md:p-12">
           <h1 className="mb-8 text-center font-display text-[40px] font-bold md:text-[52px]">
-            About the Creator
+            About the Project
           </h1>
           <div className="flex flex-col items-center gap-12 md:flex-row md:justify-around">
-            
+
             <div className="flex flex-col items-center gap-6 text-center md:items-start md:text-left">
               <p className="max-w-[400px] text-[18px] font-medium leading-relaxed text-ink/85">
-                Built with curiosity by <span className="font-bold text-ink">Moin Ansari</span>. This project combines playful neo-brutalist design with complex mathematical visualizations to make AI feel more approachable and fun.
+                This website is for the curious minds who want to know what goes on "behind the scenes" of AI, the mathematics, the concepts, and how it all works. Built by <span className="font-bold text-ink">Moin Ansari</span>, who is a beginner himself, this project is designed especially for fellow beginners. It's a place to explore complex topics playfully and make AI feel approachable for everyone at this learning layer.
               </p>
               <div className="flex flex-col gap-4 font-semibold text-[16px]">
                 <a href="mailto:moin.edu01@gmail.com" className="group flex items-center gap-4 transition-colors hover:text-violetPop">
