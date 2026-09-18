@@ -45,7 +45,7 @@ export function AudioToNumbers() {
     <div className="space-y-16 max-w-4xl mx-auto pb-8">
       {/* 1. Core Idea */}
       <section>
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
           <h2 className="font-display text-2xl font-bold mb-6 flex items-center gap-3">
             <span className="w-8 h-8 rounded-full bg-sunshine border-2 border-ink flex items-center justify-center text-sm shadow-[2px_2px_0_#17191f] font-bold text-ink">3</span>
             Sound as a Signal
@@ -71,7 +71,7 @@ export function AudioToNumbers() {
           Sound Wave Lab
         </h2>
         
-        <div className="p-6 lg:p-8 rounded-[20px] border-[3px] border-ink bg-[#dcecff] shadow-[6px_8px_0_#17191f] mb-8">
+        <div className="p-4 sm:p-6 lg:p-8 rounded-[20px] border-[3px] border-ink bg-[#dcecff] shadow-[6px_8px_0_#17191f] mb-8">
           
           <div className="bg-white border-4 border-ink rounded-xl shadow-inner mb-8 p-4 relative overflow-hidden h-48 flex items-center justify-center">
             {/* Playful background grid */}
@@ -147,7 +147,7 @@ export function AudioToNumbers() {
 
       {/* 3. Real AI Connection */}
       <section>
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#dff4e8] text-ink shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#dff4e8] text-ink shadow-[6px_8px_0_#17191f]">
           <h2 className="font-display text-2xl font-bold mb-6">How this connects to real AI</h2>
           
           <div className="bg-white/80 border-2 border-ink p-6 rounded-xl shadow-[4px_4px_0_#17191f] mb-6 font-mono font-bold text-sm sm:text-base overflow-x-auto">

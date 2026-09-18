@@ -168,7 +168,7 @@ export function HowDoesAILearn() {
           A beginner should understand this before seeing equations: <Highlight color="#c9baff">the feedback loop</Highlight>.
         </p>
 
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-white shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-white shadow-[6px_8px_0_#17191f]">
           {/* Loop Diagram Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             {cycleSteps.map((step, idx) => {
@@ -206,7 +206,7 @@ export function HowDoesAILearn() {
 
       {/* 2. Interactive Visualization: Watch a Model Learn */}
       <section>
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
             <div>
               <h2 className="font-display text-2xl font-bold flex items-center gap-3">

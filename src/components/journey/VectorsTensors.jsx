@@ -59,7 +59,7 @@ export function VectorsTensors() {
     <div className="space-y-16 max-w-4xl mx-auto pb-8">
       {/* 1. Core Idea */}
       <section>
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
           <h2 className="font-display text-2xl font-bold mb-6 flex items-center gap-3">
             <span className="w-8 h-8 rounded-full bg-sunshine border-2 border-ink flex items-center justify-center text-sm shadow-[2px_2px_0_#17191f] font-bold text-ink">6</span>
             Vectors: The Language of Space & Meaning
@@ -102,7 +102,7 @@ export function VectorsTensors() {
 
       {/* 2. Interactive Visualization: Vector as a Point & Arrow */}
       <section>
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
           <h2 className="font-display text-2xl font-bold mb-3 flex items-center gap-3">
             <span className="w-8 h-8 rounded-full bg-[#fbe1eb] border-2 border-ink flex items-center justify-center text-sm shadow-[2px_2px_0_#17191f] font-bold text-ink">
               <Move size={16} />
@@ -250,7 +250,7 @@ export function VectorsTensors() {
 
       {/* 3. Dot Product Interactive: Measuring Similarity */}
       <section>
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
           <h2 className="font-display text-2xl font-bold mb-3 flex items-center gap-3">
             <span className="w-8 h-8 rounded-full bg-sunshine border-2 border-ink flex items-center justify-center text-sm shadow-[2px_2px_0_#17191f] font-bold text-ink">
               <Compass size={16} />
@@ -401,7 +401,7 @@ export function VectorsTensors() {
 
       {/* 4. Tensors: Scaling Up Dimensions */}
       <section>
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
           <h2 className="font-display text-2xl font-bold mb-3 flex items-center gap-3">
             <span className="w-8 h-8 rounded-full bg-[#dff4e8] border-2 border-ink flex items-center justify-center text-sm shadow-[2px_2px_0_#17191f] font-bold text-ink">
               <Box size={16} />
@@ -527,7 +527,7 @@ export function VectorsTensors() {
 
       {/* 5. Chapter 01 Finale / Synthesis Card */}
       <section>
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-violetPop text-white shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-violetPop text-white shadow-[6px_8px_0_#17191f]">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-full bg-sunshine text-ink border-2 border-ink flex items-center justify-center font-bold">
               <Sparkles size={20} />

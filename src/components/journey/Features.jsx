@@ -44,7 +44,7 @@ export function Features() {
     <div className="space-y-16 max-w-4xl mx-auto pb-8">
       {/* 1. Core Idea */}
       <section>
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
           <h2 className="font-display text-2xl font-bold mb-6 flex items-center gap-3">
             <span className="w-8 h-8 rounded-full bg-sunshine border-2 border-ink flex items-center justify-center text-sm shadow-[2px_2px_0_#17191f] font-bold text-ink">4</span>
             Describing the World
@@ -80,7 +80,7 @@ export function Features() {
           Build a Data Point
         </h2>
         
-        <div className="p-6 lg:p-8 rounded-[20px] border-[3px] border-ink bg-[#fbe1eb] shadow-[6px_8px_0_#17191f] mb-8 grid md:grid-cols-2 gap-8">
+        <div className="p-4 sm:p-6 lg:p-8 rounded-[20px] border-[3px] border-ink bg-[#fbe1eb] shadow-[6px_8px_0_#17191f] mb-8 grid md:grid-cols-2 gap-8">
           
           <div>
             <h3 className="font-display font-bold text-xl mb-4">Dog Classifier Features</h3>
@@ -158,7 +158,7 @@ export function Features() {
 
       {/* 3. Real AI Connection */}
       <section>
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#c9baff] text-ink shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#c9baff] text-ink shadow-[6px_8px_0_#17191f]">
           <h2 className="font-display text-2xl font-bold mb-8">How this connects to real AI</h2>
           
           <div className="grid sm:grid-cols-2 gap-4 mb-8">

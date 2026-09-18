@@ -150,7 +150,7 @@ export function WhatIsML() {
 
       {/* 2 & 3. Interactive Visualization & Experiment */}
       <section>
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
           <h2 className="font-display text-2xl font-bold mb-4 flex items-center gap-3">
             <span className="w-8 h-8 rounded-full bg-[#c9baff] border-2 border-ink flex items-center justify-center text-sm shadow-[2px_2px_0_#17191f] font-bold text-ink">2</span>
             Teach the Machine
@@ -282,7 +282,7 @@ export function WhatIsML() {
 
       {/* 4. Real AI Example */}
       <section>
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#dcecff] text-ink shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#dcecff] text-ink shadow-[6px_8px_0_#17191f]">
           <h2 className="font-display text-2xl font-bold mb-8">Real AI Example: Spam Detection</h2>
           
           <div className="grid md:grid-cols-2 gap-8">

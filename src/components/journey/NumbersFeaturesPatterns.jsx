@@ -147,7 +147,7 @@ export function NumbersFeaturesPatterns() {
     <div className="space-y-16 max-w-4xl mx-auto pb-8">
       {/* 1. Core Idea */}
       <section>
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
           <h2 className="font-display text-2xl font-bold mb-6 flex items-center gap-3">
             <span className="w-8 h-8 rounded-full bg-sunshine border-2 border-ink flex items-center justify-center text-sm shadow-[2px_2px_0_#17191f] font-bold text-ink">5</span>
             Numbers, Features & Patterns
@@ -197,7 +197,7 @@ export function NumbersFeaturesPatterns() {
 
       {/* 2. Interactive Visualization: House Price Predictor */}
       <section>
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
           <h2 className="font-display text-2xl font-bold mb-3 flex items-center gap-3">
             <span className="w-8 h-8 rounded-full bg-[#c9baff] border-2 border-ink flex items-center justify-center text-sm shadow-[2px_2px_0_#17191f] font-bold text-ink">
               <Sliders size={16} />
@@ -398,7 +398,7 @@ export function NumbersFeaturesPatterns() {
 
       {/* 3. Signal vs. Noise: Useful vs Useless Features */}
       <section>
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#fffdf8] shadow-[6px_8px_0_#17191f]">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div>
               <h2 className="font-display text-2xl font-bold flex items-center gap-3">
@@ -547,7 +547,7 @@ export function NumbersFeaturesPatterns() {
 
       {/* 4. Real AI Connection: Handcrafted vs Learned Features */}
       <section>
-        <div className="p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#c9baff] text-ink shadow-[6px_8px_0_#17191f]">
+        <div className="p-4 sm:p-8 lg:p-10 rounded-[20px] border-[3px] border-ink bg-[#c9baff] text-ink shadow-[6px_8px_0_#17191f]">
           <h2 className="font-display text-2xl font-bold mb-6">How Real AI Discovers Features</h2>
 
           <div className="grid md:grid-cols-2 gap-6">
